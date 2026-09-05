@@ -1,0 +1,2065 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Game Shakers Entrepreneur Group</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+    color: #222;
+}
+
+header {
+    background: #12372a;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 25px;
+}
+
+header p {
+    margin: 8px 0 0;
+    opacity: 0.9;
+}
+
+.container {
+    width: 95%;
+    max-width: 1200px;
+    margin: 25px auto;
+}
+
+.login-box {
+    max-width: 430px;
+    margin: 60px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.login-box h2 {
+    text-align: center;
+    margin-top: 0;
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+input,
+select,
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 6px;
+    border-radius: 7px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+}
+
+button {
+    background: #12372a;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+.logout {
+    background: #b42318;
+    width: auto;
+    padding: 8px 15px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.nav {
+    background: white;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+}
+
+.nav button {
+    width: auto;
+    padding: 10px 15px;
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+.card h3 {
+    margin-top: 0;
+}
+
+.amount {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    background: white;
+}
+
+th,
+td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background: #12372a;
+    color: white;
+}
+
+.section {
+    margin-top: 25px;
+}
+
+.message {
+    padding: 12px;
+    margin-top: 15px;
+    border-radius: 7px;
+    background: #e8f5e9;
+    color: #1b5e20;
+}
+
+.error {
+    background: #ffebee;
+    color: #b71c1c;
+}
+
+.warning {
+    background: #fff8e1;
+    color: #795548;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+@media(max-width:600px) {
+    header h1 {
+        font-size: 20px;
+    }
+
+    table {
+        font-size: 13px;
+    }
+
+    th,
+    td {
+        padding: 8px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>GAME SHAKERS ENTREPRENEUR GROUP</h1>
+    <p>Savings • Loans • Contributions • Till Management</p>
+</header>
+
+<!-- LOGIN -->
+<div id="loginPage" class="container">
+
+    <div class="login-box">
+
+        <h2>System Login</h2>
+
+        <div id="loginMessage"></div>
+
+        <label>Username</label>
+        <input type="text" id="username" placeholder="Enter username">
+
+        <label>Password</label>
+        <input type="password" id="password" placeholder="Enter password">
+
+        <button onclick="login()">LOGIN</button>
+
+        <div class="warning">
+            <strong>First Login</strong><br><br>
+            Admin Username: <b>admin</b><br>
+            Admin Password: <b>admin123</b>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ADMIN SYSTEM -->
+<div id="adminPage" class="hidden">
+
+    <div class="container">
+
+        <div class="nav">
+
+            <button onclick="showAdminSection('dashboard')">
+                Dashboard
+            </button>
+
+            <button onclick="showAdminSection('members')">
+                Members
+            </button>
+
+            <button onclick="showAdminSection('contributions')">
+                Contributions
+            </button>
+
+            <button onclick="showAdminSection('loans')">
+                Loans
+            </button>
+
+            <button onclick="showAdminSection('till')">
+                Group Till
+            </button>
+
+            <button onclick="showAdminSection('backup')">
+                Backup
+            </button>
+
+            <button class="logout" onclick="logout()">
+                Logout
+            </button>
+
+        </div>
+
+
+        <!-- ADMIN DASHBOARD -->
+        <section id="dashboard" class="admin-section">
+
+            <h2>Admin Dashboard</h2>
+
+            <p>
+                Welcome, <strong id="adminName"></strong>
+            </p>
+
+            <div class="card-grid">
+
+                <div class="card">
+                    <h3>Total Members</h3>
+                    <div class="amount" id="totalMembers">0</div>
+                </div>
+
+                <div class="card">
+                    <h3>Total Contributions</h3>
+                    <div class="amount" id="totalContributions">
+                        KSh 0
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Loans Issued</h3>
+                    <div class="amount" id="totalLoans">
+                        KSh 0
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Outstanding Loans</h3>
+                    <div class="amount" id="outstandingLoans">
+                        KSh 0
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Interest Earned</h3>
+                    <div class="amount" id="totalInterest">
+                        KSh 0
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Group Till</h3>
+                    <div class="amount" id="tillBalance">
+                        KSh 0
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- MEMBERS -->
+        <section id="members" class="admin-section hidden">
+
+            <h2>Member Management</h2>
+
+            <div class="card">
+
+                <h3>Add New Member</h3>
+
+                <label>Full Name</label>
+                <input type="text" id="memberName">
+
+                <label>Phone Number</label>
+                <input type="text" id="memberPhone">
+
+                <label>Username</label>
+                <input type="text" id="memberUsername">
+
+                <label>Password</label>
+                <input type="password" id="memberPassword">
+
+                <button onclick="addMember()">
+                    ADD MEMBER
+                </button>
+
+                <div id="memberMessage"></div>
+
+            </div>
+
+            <div class="card section">
+
+                <h3>Registered Members</h3>
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Phone</th>
+                            <th>Username</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="membersTable">
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- CONTRIBUTIONS -->
+        <section id="contributions" class="admin-section hidden">
+
+            <h2>Friday Contributions</h2>
+
+            <div class="card">
+
+                <h3>Contribution Settings</h3>
+
+                <label>
+                    Required Friday Contribution
+                </label>
+
+                <input
+                    type="number"
+                    id="fridayAmount"
+                    value="100"
+                    min="0"
+                >
+
+                <button onclick="saveFridayAmount()">
+                    SAVE CONTRIBUTION AMOUNT
+                </button>
+
+            </div>
+
+            <div class="card section">
+
+                <h3>Manual Payment Allocation</h3>
+
+                <label>Member</label>
+
+                <select id="contributionMember">
+                </select>
+
+                <label>Amount</label>
+
+                <input
+                    type="number"
+                    id="contributionAmount"
+                    min="1"
+                >
+
+                <label>Payment Type</label>
+
+                <select id="paymentType">
+
+                    <option value="friday">
+                        Friday Contribution
+                    </option>
+
+                    <option value="loan">
+                        Loan Repayment
+                    </option>
+
+                    <option value="other">
+                        Other
+                    </option>
+
+                </select>
+
+                <label>Notes</label>
+
+                <input
+                    type="text"
+                    id="contributionNotes"
+                    placeholder="Optional notes"
+                >
+
+                <button onclick="recordContribution()">
+                    RECORD PAYMENT
+                </button>
+
+                <div id="contributionMessage"></div>
+
+            </div>
+
+            <div class="card section">
+
+                <h3>Payment History</h3>
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Member</th>
+                            <th>Amount</th>
+                            <th>Type</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="contributionTable">
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- LOANS -->
+        <section id="loans" class="admin-section hidden">
+
+            <h2>Loans</h2>
+
+            <div class="card">
+
+                <h3>Issue New Loan</h3>
+
+                <label>Member</label>
+
+                <select id="loanMember">
+                </select>
+
+                <label>Loan Amount Requested</label>
+
+                <input
+                    type="number"
+                    id="loanAmount"
+                    min="1"
+                    oninput="calculateLoan()"
+                >
+
+                <p>
+                    Interest Rate:
+                    <strong>10%</strong>
+                </p>
+
+                <p>
+                    Interest:
+                    <strong id="loanInterest">
+                        KSh 0
+                    </strong>
+                </p>
+
+                <p>
+                    Member Receives:
+                    <strong id="loanReceived">
+                        KSh 0
+                    </strong>
+                </p>
+
+                <p>
+                    Repayment Obligation:
+                    <strong id="loanDue">
+                        KSh 0
+                    </strong>
+                </p>
+
+                <p>
+                    Repayment Deadline:
+                    <strong>
+                        30 days
+                    </strong>
+                </p>
+
+                <button onclick="issueLoan()">
+                    ISSUE LOAN
+                </button>
+
+                <div id="loanMessage"></div>
+
+            </div>
+
+            <div class="card section">
+
+                <h3>Loan Records</h3>
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>Member</th>
+                            <th>Requested</th>
+                            <th>Interest</th>
+                            <th>Received</th>
+                            <th>Owed</th>
+                            <th>Due Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="loanTable">
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- TILL -->
+        <section id="till" class="admin-section hidden">
+
+            <h2>Group Till</h2>
+
+            <div class="card">
+
+                <h3>Current Till Balance</h3>
+
+                <div class="amount" id="tillBalancePage">
+                    KSh 0
+                </div>
+
+            </div>
+
+            <div class="card section">
+
+                <h3>Manual Till Transaction</h3>
+
+                <label>Transaction Type</label>
+
+                <select id="tillType">
+
+                    <option value="IN">
+                        MONEY IN
+                    </option>
+
+                    <option value="OUT">
+                        MONEY OUT
+                    </option>
+
+                </select>
+
+                <label>Amount</label>
+
+                <input
+                    type="number"
+                    id="tillAmount"
+                    min="1"
+                >
+
+                <label>Description</label>
+
+                <input
+                    type="text"
+                    id="tillDescription"
+                >
+
+                <button onclick="addTillTransaction()">
+                    RECORD TRANSACTION
+                </button>
+
+            </div>
+
+            <div class="card section">
+
+                <h3>Till Transactions</h3>
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Type</th>
+                            <th>Amount</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="tillTable">
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- BACKUP -->
+        <section id="backup" class="admin-section hidden">
+
+            <h2>System Backup</h2>
+
+            <div class="card">
+
+                <h3>Backup Your Data</h3>
+
+                <p>
+                    Download a backup of all Game Shakers
+                    system records.
+                </p>
+
+                <button onclick="backupData()">
+                    DOWNLOAD BACKUP
+                </button>
+
+            </div>
+
+            <div class="card section">
+
+                <h3>Restore Data</h3>
+
+                <p>
+                    Select a previously downloaded backup file.
+                </p>
+
+                <input
+                    type="file"
+                    id="restoreFile"
+                    accept=".json"
+                >
+
+                <button onclick="restoreData()">
+                    RESTORE BACKUP
+                </button>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================================
+   GAME SHAKERS DATA
+========================================= */
+
+let systemData = JSON.parse(
+    localStorage.getItem("gameshakersData")
+) || {
+
+    members: [],
+
+    contributions: [],
+
+    loans: [],
+
+    till: [],
+
+    settings: {
+        fridayAmount: 100
+    }
+
+};
+
+
+/* =========================================
+   SAVE DATA
+========================================= */
+
+function saveData() {
+
+    localStorage.setItem(
+        "gameshakersData",
+        JSON.stringify(systemData)
+    );
+
+}
+
+
+/* =========================================
+   LOGIN
+========================================= */
+
+function login() {
+
+    const username =
+        document.getElementById("username").value.trim();
+
+    const password =
+        document.getElementById("password").value;
+
+    const message =
+        document.getElementById("loginMessage");
+
+
+    /* ADMIN LOGIN */
+
+    if (
+        username === "admin" &&
+        password === "admin123"
+    ) {
+
+        localStorage.setItem(
+            "currentUser",
+            JSON.stringify({
+                role: "admin",
+                name: "System Administrator"
+            })
+        );
+
+        openAdmin();
+
+        return;
+    }
+
+
+    /* MEMBER LOGIN */
+
+    const member =
+        systemData.members.find(
+            m =>
+                m.username === username &&
+                m.password === password
+        );
+
+
+    if (member) {
+
+        localStorage.setItem(
+            "currentUser",
+            JSON.stringify({
+                role: "member",
+                id: member.id,
+                name: member.name
+            })
+        );
+
+        openMember(member);
+
+        return;
+    }
+
+
+    message.className = "message error";
+
+    message.innerHTML =
+        "Invalid username or password.";
+
+}
+
+
+/* =========================================
+   OPEN ADMIN
+========================================= */
+
+function openAdmin() {
+
+    document
+        .getElementById("loginPage")
+        .classList.add("hidden");
+
+    document
+        .getElementById("adminPage")
+        .classList.remove("hidden");
+
+    document
+        .getElementById("adminName")
+        .textContent =
+        "System Administrator";
+
+    updateDashboard();
+
+    loadMembers();
+
+    loadContributionMembers();
+
+    loadLoanMembers();
+
+    loadContributions();
+
+    loadLoans();
+
+    loadTill();
+
+}
+
+
+/* =========================================
+   MEMBER LOGIN
+========================================= */
+
+function openMember(member) {
+
+    document
+        .getElementById("loginPage")
+        .classList.add("hidden");
+
+    alert(
+        "Welcome " +
+        member.name +
+        ". Member dashboard will be added in the next stage."
+    );
+
+}
+
+
+/* =========================================
+   LOGOUT
+========================================= */
+
+function logout() {
+
+    localStorage.removeItem("currentUser");
+
+    location.reload();
+
+}
+
+
+/* =========================================
+   ADMIN NAVIGATION
+========================================= */
+
+function showAdminSection(section) {
+
+    document
+        .querySelectorAll(".admin-section")
+        .forEach(
+            el => el.classList.add("hidden")
+        );
+
+    document
+        .getElementById(section)
+        .classList.remove("hidden");
+
+}
+
+
+/* =========================================
+   MEMBERS
+========================================= */
+
+function addMember() {
+
+    const name =
+        document.getElementById("memberName").value.trim();
+
+    const phone =
+        document.getElementById("memberPhone").value.trim();
+
+    const username =
+        document.getElementById("memberUsername").value.trim();
+
+    const password =
+        document.getElementById("memberPassword").value;
+
+
+    if (!name || !username || !password) {
+
+        showMessage(
+            "memberMessage",
+            "Please enter name, username and password.",
+            true
+        );
+
+        return;
+    }
+
+
+    const exists =
+        systemData.members.some(
+            m => m.username === username
+        );
+
+
+    if (exists) {
+
+        showMessage(
+            "memberMessage",
+            "Username already exists.",
+            true
+        );
+
+        return;
+    }
+
+
+    const member = {
+
+        id:
+            Date.now(),
+
+        name,
+
+        phone,
+
+        username,
+
+        password,
+
+        active: true,
+
+        joinedDate:
+            new Date().toISOString()
+
+    };
+
+
+    systemData.members.push(member);
+
+    saveData();
+
+    document.getElementById("memberName").value = "";
+    document.getElementById("memberPhone").value = "";
+    document.getElementById("memberUsername").value = "";
+    document.getElementById("memberPassword").value = "";
+
+    showMessage(
+        "memberMessage",
+        "Member added successfully."
+    );
+
+    loadMembers();
+
+    loadContributionMembers();
+
+    loadLoanMembers();
+
+    updateDashboard();
+
+}
+
+
+/* =========================================
+   LOAD MEMBERS
+========================================= */
+
+function loadMembers() {
+
+    const table =
+        document.getElementById("membersTable");
+
+    table.innerHTML = "";
+
+
+    systemData.members.forEach(member => {
+
+        table.innerHTML += `
+
+            <tr>
+
+                <td>${member.id}</td>
+
+                <td>${escapeHTML(member.name)}</td>
+
+                <td>${escapeHTML(member.phone || "")}</td>
+
+                <td>${escapeHTML(member.username)}</td>
+
+                <td>
+                    ${member.active ? "Active" : "Inactive"}
+                </td>
+
+            </tr>
+
+        `;
+
+    });
+
+}
+
+
+/* =========================================
+   CONTRIBUTION SETTINGS
+========================================= */
+
+function saveFridayAmount() {
+
+    const amount =
+        Number(
+            document.getElementById("fridayAmount").value
+        );
+
+    if (amount < 0) return;
+
+    systemData.settings.fridayAmount = amount;
+
+    saveData();
+
+    alert(
+        "Friday contribution amount saved."
+    );
+
+}
+
+
+/* =========================================
+   LOAD CONTRIBUTION MEMBERS
+========================================= */
+
+function loadContributionMembers() {
+
+    const select =
+        document.getElementById("contributionMember");
+
+    select.innerHTML =
+        '<option value="">Select member</option>';
+
+    systemData.members.forEach(member => {
+
+        select.innerHTML += `
+
+            <option value="${member.id}">
+                ${escapeHTML(member.name)}
+            </option>
+
+        `;
+
+    });
+
+}
+
+
+/* =========================================
+   RECORD PAYMENT
+========================================= */
+
+function recordContribution() {
+
+    const memberId =
+        Number(
+            document.getElementById(
+                "contributionMember"
+            ).value
+        );
+
+    const amount =
+        Number(
+            document.getElementById(
+                "contributionAmount"
+            ).value
+        );
+
+    const type =
+        document.getElementById(
+            "paymentType"
+        ).value;
+
+    const notes =
+        document.getElementById(
+            "contributionNotes"
+        ).value;
+
+
+    if (!memberId || amount <= 0) {
+
+        showMessage(
+            "contributionMessage",
+            "Select a member and enter a valid amount.",
+            true
+        );
+
+        return;
+    }
+
+
+    const member =
+        systemData.members.find(
+            m => m.id === memberId
+        );
+
+
+    systemData.contributions.push({
+
+        id: Date.now(),
+
+        memberId,
+
+        memberName: member.name,
+
+        amount,
+
+        type,
+
+        notes,
+
+        date:
+            new Date().toISOString()
+
+    });
+
+
+    /* MONEY ENTERS TILL */
+
+    systemData.till.push({
+
+        id: Date.now() + 1,
+
+        type: "IN",
+
+        amount,
+
+        description:
+            type === "friday"
+                ? "Friday contribution - " + member.name
+                : type === "loan"
+                    ? "Loan repayment - " + member.name
+                    : "Other payment - " + member.name,
+
+        date:
+            new Date().toISOString()
+
+    });
+
+
+    saveData();
+
+    document.getElementById(
+        "contributionAmount"
+    ).value = "";
+
+    document.getElementById(
+        "contributionNotes"
+    ).value = "";
+
+    showMessage(
+        "contributionMessage",
+        "Payment recorded successfully."
+    );
+
+    loadContributions();
+
+    loadTill();
+
+    updateDashboard();
+
+}
+
+
+/* =========================================
+   LOAD CONTRIBUTIONS
+========================================= */
+
+function loadContributions() {
+
+    const table =
+        document.getElementById(
+            "contributionTable"
+        );
+
+    table.innerHTML = "";
+
+
+    [...systemData.contributions]
+        .reverse()
+        .forEach(item => {
+
+            table.innerHTML += `
+
+                <tr>
+
+                    <td>
+                        ${formatDate(item.date)}
+                    </td>
+
+                    <td>
+                        ${escapeHTML(item.memberName)}
+                    </td>
+
+                    <td>
+                        KSh ${formatMoney(item.amount)}
+                    </td>
+
+                    <td>
+                        ${escapeHTML(item.type)}
+                    </td>
+
+                    <td>
+                        ${escapeHTML(item.notes || "")}
+                    </td>
+
+                </tr>
+
+            `;
+
+        });
+
+}
+
+
+/* =========================================
+   LOAN CALCULATOR
+========================================= */
+
+function calculateLoan() {
+
+    const amount =
+        Number(
+            document.getElementById(
+                "loanAmount"
+            ).value
+        ) || 0;
+
+
+    const interest =
+        amount * 0.10;
+
+
+    const received =
+        amount - interest;
+
+
+    document.getElementById(
+        "loanInterest"
+    ).textContent =
+        "KSh " + formatMoney(interest);
+
+
+    document.getElementById(
+        "loanReceived"
+    ).textContent =
+        "KSh " + formatMoney(received);
+
+
+    document.getElementById(
+        "loanDue"
+    ).textContent =
+        "KSh " + formatMoney(amount);
+
+}
+
+
+/* =========================================
+   LOAD LOAN MEMBERS
+========================================= */
+
+function loadLoanMembers() {
+
+    const select =
+        document.getElementById("loanMember");
+
+    select.innerHTML =
+        '<option value="">Select member</option>';
+
+    systemData.members.forEach(member => {
+
+        select.innerHTML += `
+
+            <option value="${member.id}">
+                ${escapeHTML(member.name)}
+            </option>
+
+        `;
+
+    });
+
+}
+
+
+/* =========================================
+   ISSUE LOAN
+========================================= */
+
+function issueLoan() {
+
+    const memberId =
+        Number(
+            document.getElementById(
+                "loanMember"
+            ).value
+        );
+
+    const amount =
+        Number(
+            document.getElementById(
+                "loanAmount"
+            ).value
+        );
+
+
+    if (!memberId || amount <= 0) {
+
+        showMessage(
+            "loanMessage",
+            "Select a member and enter a valid loan amount.",
+            true
+        );
+
+        return;
+    }
+
+
+    const member =
+        systemData.members.find(
+            m => m.id === memberId
+        );
+
+
+    const interest =
+        amount * 0.10;
+
+
+    const received =
+        amount - interest;
+
+
+    const requestDate =
+        new Date();
+
+
+    const dueDate =
+        new Date(requestDate);
+
+    dueDate.setDate(
+        dueDate.getDate() + 30
+    );
+
+
+    const loan = {
+
+        id: Date.now(),
+
+        memberId,
+
+        memberName: member.name,
+
+        requestedAmount: amount,
+
+        interestRate: 10,
+
+        interest,
+
+        amountReceived: received,
+
+        amountDue: amount,
+
+        amountPaid: 0,
+
+        requestDate:
+            requestDate.toISOString(),
+
+        dueDate:
+            dueDate.toISOString(),
+
+        status: "ACTIVE"
+
+    };
+
+
+    systemData.loans.push(loan);
+
+
+    /*
+       MEMBER RECEIVES:
+
+       Loan request = 10,000
+       Interest = 1,000
+       Cash received = 9,000
+
+       BUT MEMBER OWES = 10,000
+    */
+
+
+    /* CASH PAID OUT */
+
+    systemData.till.push({
+
+        id: Date.now() + 1,
+
+        type: "OUT",
+
+        amount: received,
+
+        description:
+            "Loan issued to " + member.name,
+
+        date:
+            new Date().toISOString()
+
+    });
+
+
+    /* INTEREST ENTERS TILL */
+
+    systemData.till.push({
+
+        id: Date.now() + 2,
+
+        type: "IN",
+
+        amount: interest,
+
+        description:
+            "Loan interest - " + member.name,
+
+        date:
+            new Date().toISOString()
+
+    });
+
+
+    saveData();
+
+
+    document.getElementById(
+        "loanAmount"
+    ).value = "";
+
+    calculateLoan();
+
+
+    showMessage(
+        "loanMessage",
+        "Loan issued successfully. Member receives KSh "
+        + formatMoney(received)
+        + " and owes KSh "
+        + formatMoney(amount)
+        + "."
+    );
+
+
+    loadLoans();
+
+    loadTill();
+
+    updateDashboard();
+
+}
+
+
+/* =========================================
+   LOAD LOANS
+========================================= */
+
+function loadLoans() {
+
+    const table =
+        document.getElementById(
+            "loanTable"
+        );
+
+    table.innerHTML = "";
+
+
+    [...systemData.loans]
+        .reverse()
+        .forEach(loan => {
+
+            const remaining =
+                loan.amountDue -
+                loan.amountPaid;
+
+
+            const today =
+                new Date();
+
+
+            const due =
+                new Date(loan.dueDate);
+
+
+            let status =
+                loan.status;
+
+
+            if (
+                remaining <= 0
+            ) {
+
+                status = "PAID";
+
+            } else if (
+                today > due
+            ) {
+
+                status = "OVERDUE";
+
+            }
+
+
+            table.innerHTML += `
+
+                <tr>
+
+                    <td>
+                        ${escapeHTML(loan.memberName)}
+                    </td>
+
+                    <td>
+                        KSh ${formatMoney(
+                            loan.requestedAmount
+                        )}
+                    </td>
+
+                    <td>
+                        KSh ${formatMoney(
+                            loan.interest
+                        )}
+                    </td>
+
+                    <td>
+                        KSh ${formatMoney(
+                            loan.amountReceived
+                        )}
+                    </td>
+
+                    <td>
+                        KSh ${formatMoney(
+                            remaining
+                        )}
+                    </td>
+
+                    <td>
+                        ${formatDate(loan.dueDate)}
+                    </td>
+
+                    <td>
+                        ${status}
+                    </td>
+
+                </tr>
+
+            `;
+
+        });
+
+}
+
+
+/* =========================================
+   TILL
+========================================= */
+
+function addTillTransaction() {
+
+    const type =
+        document.getElementById(
+            "tillType"
+        ).value;
+
+    const amount =
+        Number(
+            document.getElementById(
+                "tillAmount"
+            ).value
+        );
+
+    const description =
+        document.getElementById(
+            "tillDescription"
+        ).value;
+
+
+    if (amount <= 0) {
+
+        alert(
+            "Enter a valid amount."
+        );
+
+        return;
+    }
+
+
+    systemData.till.push({
+
+        id: Date.now(),
+
+        type,
+
+        amount,
+
+        description,
+
+        date:
+            new Date().toISOString()
+
+    });
+
+
+    saveData();
+
+
+    document.getElementById(
+        "tillAmount"
+    ).value = "";
+
+    document.getElementById(
+        "tillDescription"
+    ).value = "";
+
+
+    loadTill();
+
+    updateDashboard();
+
+    alert(
+        "Till transaction recorded."
+    );
+
+}
+
+
+/* =========================================
+   LOAD TILL
+========================================= */
+
+function loadTill() {
+
+    const table =
+        document.getElementById(
+            "tillTable"
+        );
+
+    table.innerHTML = "";
+
+
+    [...systemData.till]
+        .reverse()
+        .forEach(item => {
+
+            table.innerHTML += `
+
+                <tr>
+
+                    <td>
+                        ${formatDate(item.date)}
+                    </td>
+
+                    <td>
+                        ${item.type}
+                    </td>
+
+                    <td>
+                        KSh ${formatMoney(item.amount)}
+                    </td>
+
+                    <td>
+                        ${escapeHTML(
+                            item.description || ""
+                        )}
+                    </td>
+
+                </tr>
+
+            `;
+
+        });
+
+
+    const balance =
+        calculateTill();
+
+
+    document.getElementById(
+        "tillBalancePage"
+    ).textContent =
+        "KSh " + formatMoney(balance);
+
+}
+
+
+/* =========================================
+   CALCULATE TILL
+========================================= */
+
+function calculateTill() {
+
+    let balance = 0;
+
+
+    systemData.till.forEach(item => {
+
+        if (item.type === "IN") {
+
+            balance += Number(item.amount);
+
+        } else {
+
+            balance -= Number(item.amount);
+
+        }
+
+    });
+
+
+    return balance;
+
+}
+
+
+/* =========================================
+   DASHBOARD
+========================================= */
+
+function updateDashboard() {
+
+    const members =
+        systemData.members.length;
+
+
+    const contributions =
+        systemData.contributions.reduce(
+            (sum, item) =>
+                sum + Number(item.amount),
+            0
+        );
+
+
+    const loans =
+        systemData.loans.reduce(
+            (sum, loan) =>
+                sum + Number(
+                    loan.amountReceived
+                ),
+            0
+        );
+
+
+    const outstanding =
+        systemData.loans.reduce(
+            (sum, loan) =>
+                sum +
+                Math.max(
+                    0,
+                    Number(loan.amountDue) -
+                    Number(loan.amountPaid)
+                ),
+            0
+        );
+
+
+    const interest =
+        systemData.loans.reduce(
+            (sum, loan) =>
+                sum + Number(loan.interest),
+            0
+        );
+
+
+    const till =
+        calculateTill();
+
+
+    document.getElementById(
+        "totalMembers"
+    ).textContent = members;
+
+
+    document.getElementById(
+        "totalContributions"
+    ).textContent =
+        "KSh " + formatMoney(contributions);
+
+
+    document.getElementById(
+        "totalLoans"
+    ).textContent =
+        "KSh " + formatMoney(loans);
+
+
+    document.getElementById(
+        "outstandingLoans"
+    ).textContent =
+        "KSh " + formatMoney(outstanding);
+
+
+    document.getElementById(
+        "totalInterest"
+    ).textContent =
+        "KSh " + formatMoney(interest);
+
+
+    document.getElementById(
+        "tillBalance"
+    ).textContent =
+        "KSh " + formatMoney(till);
+
+}
+
+
+/* =========================================
+   BACKUP
+========================================= */
+
+function backupData() {
+
+    const data =
+        JSON.stringify(
+            systemData,
+            null,
+            2
+        );
+
+
+    const blob =
+        new Blob(
+            [data],
+            {
+                type: "application/json"
+            }
+        );
+
+
+    const url =
+        URL.createObjectURL(blob);
+
+
+    const link =
+        document.createElement("a");
+
+
+    link.href = url;
+
+    link.download =
+        "gameshakers-backup.json";
+
+
+    link.click();
+
+
+    URL.revokeObjectURL(url);
+
+}
+
+
+/* =========================================
+   RESTORE
+========================================= */
+
+function restoreData() {
+
+    const file =
+        document.getElementById(
+            "restoreFile"
+        ).files[0];
+
+
+    if (!file) {
+
+        alert(
+            "Select a backup file first."
+        );
+
+        return;
+    }
+
+
+    const reader =
+        new FileReader();
+
+
+    reader.onload = function(event) {
+
+        try {
+
+            const restored =
+                JSON.parse(
+                    event.target.result
+                );
+
+
+            if (
+                !restored.members ||
+                !restored.contributions ||
+                !restored.loans ||
+                !restored.till
+            ) {
+
+                throw new Error(
+                    "Invalid backup."
+                );
+
+            }
+
+
+            systemData = restored;
+
+            saveData();
+
+            alert(
+                "Backup restored successfully."
+            );
+
+            location.reload();
+
+        } catch(error) {
+
+            alert(
+                "Invalid backup file."
+            );
+
+        }
+
+    };
+
+
+    reader.readAsText(file);
+
+}
+
+
+/* =========================================
+   HELPERS
+========================================= */
+
+function showMessage(
+    elementId,
+    message,
+    error = false
+) {
+
+    const element =
+        document.getElementById(
+            elementId
+        );
+
+
+    element.className =
+        error
+            ? "message error"
+            : "message";
+
+
+    element.textContent =
+        message;
+
+}
+
+
+function formatMoney(amount) {
+
+    return Number(amount || 0)
+        .toLocaleString(
+            "en-KE",
+            {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }
+        );
+
+}
+
+
+function formatDate(date) {
+
+    return new Date(date)
+        .toLocaleDateString(
+            "en-KE"
+        );
+
+}
+
+
+function escapeHTML(value) {
+
+    return String(value || "")
+        .replace(
+            /[&<>"']/g,
+            function(char) {
+
+                const map = {
+
+                    "&": "&amp;",
+                    "<": "&lt;",
+                    ">": "&gt;",
+                    '"': "&quot;",
+                    "'": "&#039;"
+
+                };
+
+                return map[char];
+
+            }
+        );
+
+}
+
+
+/* =========================================
+   STARTUP
+========================================= */
+
+(function startSystem() {
+
+    const currentUser =
+        JSON.parse(
+            localStorage.getItem(
+                "currentUser"
+            )
+        );
+
+
+    if (
+        currentUser &&
+        currentUser.role === "admin"
+    ) {
+
+        openAdmin();
+
+    }
+
+})();
+
+</script>
+
+</body>
+</html>
