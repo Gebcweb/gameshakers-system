@@ -3,9 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Game Shakers Entrepreneur Group</title>
 
 <style>
+
 * {
     box-sizing: border-box;
 }
@@ -86,7 +88,7 @@ button:hover {
 .logout {
     background: #b42318;
     width: auto;
-    padding: 8px 15px;
+    padding: 10px 18px;
 }
 
 .hidden {
@@ -128,6 +130,7 @@ button:hover {
 .amount {
     font-size: 25px;
     font-weight: bold;
+    color: #12372a;
 }
 
 table {
@@ -174,7 +177,30 @@ th {
     margin-top: 20px;
 }
 
+.till-number {
+    font-size: 28px;
+    font-weight: bold;
+    color: #12372a;
+    letter-spacing: 2px;
+}
+
+.status-paid {
+    color: green;
+    font-weight: bold;
+}
+
+.status-overdue {
+    color: red;
+    font-weight: bold;
+}
+
+.status-active {
+    color: #12372a;
+    font-weight: bold;
+}
+
 @media(max-width:600px) {
+
     header h1 {
         font-size: 20px;
     }
@@ -187,18 +213,27 @@ th {
     td {
         padding: 8px;
     }
+
 }
+
 </style>
 </head>
 
 <body>
 
 <header>
+
     <h1>GAME SHAKERS ENTREPRENEUR GROUP</h1>
-    <p>Savings • Loans • Contributions • Till Management</p>
+
+    <p>
+        Savings • Loans • Contributions • Till Management
+    </p>
+
 </header>
 
-<!-- LOGIN -->
+
+<!-- LOGIN PAGE -->
+
 <div id="loginPage" class="container">
 
     <div class="login-box">
@@ -208,17 +243,37 @@ th {
         <div id="loginMessage"></div>
 
         <label>Username</label>
-        <input type="text" id="username" placeholder="Enter username">
+
+        <input
+            type="text"
+            id="username"
+            placeholder="Enter username"
+        >
 
         <label>Password</label>
-        <input type="password" id="password" placeholder="Enter password">
 
-        <button onclick="login()">LOGIN</button>
+        <input
+            type="password"
+            id="password"
+            placeholder="Enter password"
+        >
+
+        <button onclick="login()">
+            LOGIN
+        </button>
 
         <div class="warning">
-            <strong>First Login</strong><br><br>
-            Admin Username: <b>admin</b><br>
-            Admin Password: <b>admin123</b>
+
+            <strong>Administrator First Login</strong>
+
+            <br><br>
+
+            Username: <b>admin</b>
+
+            <br>
+
+            Password: <b>admin123</b>
+
         </div>
 
     </div>
@@ -227,471 +282,703 @@ th {
 
 
 <!-- ADMIN SYSTEM -->
+
 <div id="adminPage" class="hidden">
 
-    <div class="container">
+<div class="container">
 
-        <div class="nav">
+<div class="nav">
 
-            <button onclick="showAdminSection('dashboard')">
-                Dashboard
-            </button>
+<button onclick="showAdminSection('dashboard')">
+Dashboard
+</button>
 
-            <button onclick="showAdminSection('members')">
-                Members
-            </button>
+<button onclick="showAdminSection('members')">
+Members
+</button>
 
-            <button onclick="showAdminSection('contributions')">
-                Contributions
-            </button>
+<button onclick="showAdminSection('contributions')">
+Contributions
+</button>
 
-            <button onclick="showAdminSection('loans')">
-                Loans
-            </button>
+<button onclick="showAdminSection('loans')">
+Loans
+</button>
 
-            <button onclick="showAdminSection('till')">
-                Group Till
-            </button>
+<button onclick="showAdminSection('till')">
+Group Till
+</button>
 
-            <button onclick="showAdminSection('backup')">
-                Backup
-            </button>
+<button onclick="showAdminSection('backup')">
+Backup
+</button>
 
-            <button class="logout" onclick="logout()">
-                Logout
-            </button>
+<button class="logout" onclick="logout()">
+Logout
+</button>
 
-        </div>
+</div>
 
 
-        <!-- ADMIN DASHBOARD -->
-        <section id="dashboard" class="admin-section">
+<!-- DASHBOARD -->
 
-            <h2>Admin Dashboard</h2>
+<section id="dashboard" class="admin-section">
 
-            <p>
-                Welcome, <strong id="adminName"></strong>
-            </p>
+<h2>Administrator Dashboard</h2>
 
-            <div class="card-grid">
+<p>
+Welcome,
+<strong id="adminName"></strong>
+</p>
 
-                <div class="card">
-                    <h3>Total Members</h3>
-                    <div class="amount" id="totalMembers">0</div>
-                </div>
+<div class="card-grid">
 
-                <div class="card">
-                    <h3>Total Contributions</h3>
-                    <div class="amount" id="totalContributions">
-                        KSh 0
-                    </div>
-                </div>
+<div class="card">
 
-                <div class="card">
-                    <h3>Loans Issued</h3>
-                    <div class="amount" id="totalLoans">
-                        KSh 0
-                    </div>
-                </div>
+<h3>Total Members</h3>
 
-                <div class="card">
-                    <h3>Outstanding Loans</h3>
-                    <div class="amount" id="outstandingLoans">
-                        KSh 0
-                    </div>
-                </div>
+<div class="amount" id="totalMembers">
+0
+</div>
 
-                <div class="card">
-                    <h3>Interest Earned</h3>
-                    <div class="amount" id="totalInterest">
-                        KSh 0
-                    </div>
-                </div>
+</div>
 
-                <div class="card">
-                    <h3>Group Till</h3>
-                    <div class="amount" id="tillBalance">
-                        KSh 0
-                    </div>
-                </div>
 
-            </div>
+<div class="card">
 
-        </section>
+<h3>Total Contributions</h3>
 
+<div class="amount" id="totalContributions">
+KSh 0
+</div>
 
-        <!-- MEMBERS -->
-        <section id="members" class="admin-section hidden">
+</div>
 
-            <h2>Member Management</h2>
 
-            <div class="card">
+<div class="card">
 
-                <h3>Add New Member</h3>
+<h3>Loans Issued</h3>
 
-                <label>Full Name</label>
-                <input type="text" id="memberName">
+<div class="amount" id="totalLoans">
+KSh 0
+</div>
 
-                <label>Phone Number</label>
-                <input type="text" id="memberPhone">
+</div>
 
-                <label>Username</label>
-                <input type="text" id="memberUsername">
 
-                <label>Password</label>
-                <input type="password" id="memberPassword">
+<div class="card">
 
-                <button onclick="addMember()">
-                    ADD MEMBER
-                </button>
+<h3>Outstanding Loans</h3>
 
-                <div id="memberMessage"></div>
+<div class="amount" id="outstandingLoans">
+KSh 0
+</div>
 
-            </div>
+</div>
 
-            <div class="card section">
 
-                <h3>Registered Members</h3>
+<div class="card">
 
-                <table>
+<h3>Interest Earned</h3>
 
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Phone</th>
-                            <th>Username</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
+<div class="amount" id="totalInterest">
+KSh 0
+</div>
 
-                    <tbody id="membersTable">
-                    </tbody>
+</div>
 
-                </table>
 
-            </div>
+<div class="card">
 
-        </section>
+<h3>Group Till</h3>
 
+<div class="amount" id="tillBalance">
+KSh 0
+</div>
 
-        <!-- CONTRIBUTIONS -->
-        <section id="contributions" class="admin-section hidden">
+</div>
 
-            <h2>Friday Contributions</h2>
+</div>
 
-            <div class="card">
+</section>
 
-                <h3>Contribution Settings</h3>
 
-                <label>
-                    Required Friday Contribution
-                </label>
+<!-- MEMBERS -->
 
-                <input
-                    type="number"
-                    id="fridayAmount"
-                    value="100"
-                    min="0"
-                >
+<section id="members" class="admin-section hidden">
 
-                <button onclick="saveFridayAmount()">
-                    SAVE CONTRIBUTION AMOUNT
-                </button>
+<h2>Member Management</h2>
 
-            </div>
+<div class="card">
 
-            <div class="card section">
+<h3>Add New Member</h3>
 
-                <h3>Manual Payment Allocation</h3>
+<label>Full Name</label>
+<input type="text" id="memberName">
 
-                <label>Member</label>
+<label>Phone Number</label>
+<input type="text" id="memberPhone">
 
-                <select id="contributionMember">
-                </select>
+<label>Username</label>
+<input type="text" id="memberUsername">
 
-                <label>Amount</label>
+<label>Password</label>
+<input type="password" id="memberPassword">
 
-                <input
-                    type="number"
-                    id="contributionAmount"
-                    min="1"
-                >
+<button onclick="addMember()">
+ADD MEMBER
+</button>
 
-                <label>Payment Type</label>
+<div id="memberMessage"></div>
 
-                <select id="paymentType">
+</div>
 
-                    <option value="friday">
-                        Friday Contribution
-                    </option>
 
-                    <option value="loan">
-                        Loan Repayment
-                    </option>
+<div class="card section">
 
-                    <option value="other">
-                        Other
-                    </option>
+<h3>Registered Members</h3>
 
-                </select>
+<table>
 
-                <label>Notes</label>
+<thead>
 
-                <input
-                    type="text"
-                    id="contributionNotes"
-                    placeholder="Optional notes"
-                >
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Phone</th>
+<th>Username</th>
+<th>Joined</th>
+<th>Status</th>
+</tr>
 
-                <button onclick="recordContribution()">
-                    RECORD PAYMENT
-                </button>
+</thead>
 
-                <div id="contributionMessage"></div>
+<tbody id="membersTable"></tbody>
 
-            </div>
+</table>
 
-            <div class="card section">
+</div>
 
-                <h3>Payment History</h3>
+</section>
 
-                <table>
 
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Member</th>
-                            <th>Amount</th>
-                            <th>Type</th>
-                            <th>Notes</th>
-                        </tr>
-                    </thead>
+<!-- CONTRIBUTIONS -->
 
-                    <tbody id="contributionTable">
-                    </tbody>
+<section id="contributions" class="admin-section hidden">
 
-                </table>
+<h2>Friday Contributions</h2>
 
-            </div>
+<div class="card">
 
-        </section>
+<h3>Contribution Settings</h3>
 
+<label>Required Friday Contribution</label>
 
-        <!-- LOANS -->
-        <section id="loans" class="admin-section hidden">
+<input
+type="number"
+id="fridayAmount"
+value="100"
+min="0"
+>
 
-            <h2>Loans</h2>
+<button onclick="saveFridayAmount()">
+SAVE CONTRIBUTION AMOUNT
+</button>
 
-            <div class="card">
+</div>
 
-                <h3>Issue New Loan</h3>
 
-                <label>Member</label>
+<div class="card section">
 
-                <select id="loanMember">
-                </select>
+<h3>Manual Payment Allocation</h3>
 
-                <label>Loan Amount Requested</label>
+<label>Member</label>
 
-                <input
-                    type="number"
-                    id="loanAmount"
-                    min="1"
-                    oninput="calculateLoan()"
-                >
+<select id="contributionMember"></select>
 
-                <p>
-                    Interest Rate:
-                    <strong>10%</strong>
-                </p>
+<label>Amount</label>
 
-                <p>
-                    Interest:
-                    <strong id="loanInterest">
-                        KSh 0
-                    </strong>
-                </p>
+<input
+type="number"
+id="contributionAmount"
+min="1"
+>
 
-                <p>
-                    Member Receives:
-                    <strong id="loanReceived">
-                        KSh 0
-                    </strong>
-                </p>
+<label>Payment Type</label>
 
-                <p>
-                    Repayment Obligation:
-                    <strong id="loanDue">
-                        KSh 0
-                    </strong>
-                </p>
+<select id="paymentType">
 
-                <p>
-                    Repayment Deadline:
-                    <strong>
-                        30 days
-                    </strong>
-                </p>
+<option value="friday">
+Friday Contribution
+</option>
 
-                <button onclick="issueLoan()">
-                    ISSUE LOAN
-                </button>
+<option value="loan">
+Loan Repayment
+</option>
 
-                <div id="loanMessage"></div>
+<option value="other">
+Other Payment
+</option>
 
-            </div>
+</select>
 
-            <div class="card section">
 
-                <h3>Loan Records</h3>
+<div id="loanAllocationArea" class="hidden">
 
-                <table>
+<label>Select Loan for Repayment</label>
 
-                    <thead>
-                        <tr>
-                            <th>Member</th>
-                            <th>Requested</th>
-                            <th>Interest</th>
-                            <th>Received</th>
-                            <th>Owed</th>
-                            <th>Due Date</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
+<select id="repaymentLoan"></select>
 
-                    <tbody id="loanTable">
-                    </tbody>
+</div>
 
-                </table>
 
-            </div>
+<label>Notes</label>
 
-        </section>
+<input
+type="text"
+id="contributionNotes"
+placeholder="Optional notes"
+>
 
+<button onclick="recordContribution()">
+RECORD PAYMENT
+</button>
 
-        <!-- TILL -->
-        <section id="till" class="admin-section hidden">
+<div id="contributionMessage"></div>
 
-            <h2>Group Till</h2>
+</div>
 
-            <div class="card">
 
-                <h3>Current Till Balance</h3>
+<div class="card section">
 
-                <div class="amount" id="tillBalancePage">
-                    KSh 0
-                </div>
+<h3>Payment History</h3>
 
-            </div>
+<table>
 
-            <div class="card section">
+<thead>
 
-                <h3>Manual Till Transaction</h3>
+<tr>
+<th>Date</th>
+<th>Member</th>
+<th>Amount</th>
+<th>Type</th>
+<th>Notes</th>
+</tr>
 
-                <label>Transaction Type</label>
+</thead>
 
-                <select id="tillType">
+<tbody id="contributionTable"></tbody>
 
-                    <option value="IN">
-                        MONEY IN
-                    </option>
+</table>
 
-                    <option value="OUT">
-                        MONEY OUT
-                    </option>
+</div>
 
-                </select>
+</section>
 
-                <label>Amount</label>
 
-                <input
-                    type="number"
-                    id="tillAmount"
-                    min="1"
-                >
+<!-- LOANS -->
 
-                <label>Description</label>
+<section id="loans" class="admin-section hidden">
 
-                <input
-                    type="text"
-                    id="tillDescription"
-                >
+<h2>Loans</h2>
 
-                <button onclick="addTillTransaction()">
-                    RECORD TRANSACTION
-                </button>
+<div class="card">
 
-            </div>
+<h3>Issue New Loan</h3>
 
-            <div class="card section">
+<label>Member</label>
 
-                <h3>Till Transactions</h3>
+<select id="loanMember"></select>
 
-                <table>
+<label>Loan Amount Requested</label>
 
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Type</th>
-                            <th>Amount</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
+<input
+type="number"
+id="loanAmount"
+min="1"
+oninput="calculateLoan()"
+>
 
-                    <tbody id="tillTable">
-                    </tbody>
+<p>
+Interest Rate:
+<strong>10%</strong>
+</p>
 
-                </table>
+<p>
+Interest:
+<strong id="loanInterest">KSh 0</strong>
+</p>
 
-            </div>
+<p>
+Member Receives:
+<strong id="loanReceived">KSh 0</strong>
+</p>
 
-        </section>
+<p>
+Repayment Obligation:
+<strong id="loanDue">KSh 0</strong>
+</p>
 
+<p>
+Repayment Deadline:
+<strong>30 days</strong>
+</p>
 
-        <!-- BACKUP -->
-        <section id="backup" class="admin-section hidden">
+<button onclick="issueLoan()">
+ISSUE LOAN
+</button>
 
-            <h2>System Backup</h2>
+<div id="loanMessage"></div>
 
-            <div class="card">
+</div>
 
-                <h3>Backup Your Data</h3>
 
-                <p>
-                    Download a backup of all Game Shakers
-                    system records.
-                </p>
+<div class="card section">
 
-                <button onclick="backupData()">
-                    DOWNLOAD BACKUP
-                </button>
+<h3>Loan Records</h3>
 
-            </div>
+<table>
 
-            <div class="card section">
+<thead>
 
-                <h3>Restore Data</h3>
+<tr>
+<th>Member</th>
+<th>Requested</th>
+<th>Interest</th>
+<th>Received</th>
+<th>Remaining</th>
+<th>Due Date</th>
+<th>Status</th>
+</tr>
 
-                <p>
-                    Select a previously downloaded backup file.
-                </p>
+</thead>
 
-                <input
-                    type="file"
-                    id="restoreFile"
-                    accept=".json"
-                >
+<tbody id="loanTable"></tbody>
 
-                <button onclick="restoreData()">
-                    RESTORE BACKUP
-                </button>
+</table>
 
-            </div>
+</div>
 
-        </section>
+</section>
 
-    </div>
+
+<!-- TILL -->
+
+<section id="till" class="admin-section hidden">
+
+<h2>Group Till</h2>
+
+<div class="card">
+
+<h3>Payment Till Number</h3>
+
+<div class="till-number">
+6837759
+</div>
+
+<p>
+Members should use this till number when making group payments.
+</p>
+
+</div>
+
+
+<div class="card section">
+
+<h3>Current Till Balance</h3>
+
+<div class="amount" id="tillBalancePage">
+KSh 0
+</div>
+
+</div>
+
+
+<div class="card section">
+
+<h3>Manual Till Transaction</h3>
+
+<label>Transaction Type</label>
+
+<select id="tillType">
+
+<option value="IN">
+MONEY IN
+</option>
+
+<option value="OUT">
+MONEY OUT
+</option>
+
+</select>
+
+<label>Amount</label>
+
+<input
+type="number"
+id="tillAmount"
+min="1"
+>
+
+<label>Description</label>
+
+<input
+type="text"
+id="tillDescription"
+>
+
+<button onclick="addTillTransaction()">
+RECORD TRANSACTION
+</button>
+
+</div>
+
+
+<div class="card section">
+
+<h3>Till Transactions</h3>
+
+<table>
+
+<thead>
+
+<tr>
+<th>Date</th>
+<th>Type</th>
+<th>Amount</th>
+<th>Description</th>
+</tr>
+
+</thead>
+
+<tbody id="tillTable"></tbody>
+
+</table>
+
+</div>
+
+</section>
+
+
+<!-- BACKUP -->
+
+<section id="backup" class="admin-section hidden">
+
+<h2>System Backup</h2>
+
+<div class="card">
+
+<h3>Backup Your Data</h3>
+
+<p>
+Download all Game Shakers system records.
+</p>
+
+<button onclick="backupData()">
+DOWNLOAD BACKUP
+</button>
+
+</div>
+
+
+<div class="card section">
+
+<h3>Restore Data</h3>
+
+<p>
+Select a previously downloaded backup file.
+</p>
+
+<input
+type="file"
+id="restoreFile"
+accept=".json"
+>
+
+<button onclick="restoreData()">
+RESTORE BACKUP
+</button>
+
+</div>
+
+</section>
+
+</div>
+
+</div>
+
+
+<!-- MEMBER SYSTEM -->
+
+<div id="memberPage" class="hidden">
+
+<div class="container">
+
+<div class="nav">
+
+<button onclick="showMemberSection('memberDashboard')">
+My Dashboard
+</button>
+
+<button onclick="showMemberSection('memberContributions')">
+My Contributions
+</button>
+
+<button onclick="showMemberSection('memberLoans')">
+My Loans
+</button>
+
+<button class="logout" onclick="logout()">
+Logout
+</button>
+
+</div>
+
+
+<!-- MEMBER DASHBOARD -->
+
+<section id="memberDashboard" class="member-section">
+
+<h2>
+Welcome,
+<span id="memberWelcomeName"></span>
+</h2>
+
+
+<div class="card">
+
+<h3>Group Payment Information</h3>
+
+<p>
+Group Till Number
+</p>
+
+<div class="till-number">
+6837759
+</div>
+
+</div>
+
+
+<div class="card-grid">
+
+<div class="card">
+
+<h3>Required Friday Contribution</h3>
+
+<div class="amount" id="memberFridayAmount">
+KSh 0
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h3>My Total Contributions</h3>
+
+<div class="amount" id="memberTotalContributions">
+KSh 0
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h3>My Loan Balance</h3>
+
+<div class="amount" id="memberLoanBalance">
+KSh 0
+</div>
+
+</div>
+
+</div>
+
+
+<div class="card section">
+
+<h3>My Active Loan</h3>
+
+<div id="memberActiveLoan">
+
+No active loan.
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- MEMBER CONTRIBUTIONS -->
+
+<section
+id="memberContributions"
+class="member-section hidden"
+>
+
+<h2>My Payment History</h2>
+
+<div class="card">
+
+<table>
+
+<thead>
+
+<tr>
+<th>Date</th>
+<th>Amount</th>
+<th>Type</th>
+<th>Notes</th>
+</tr>
+
+</thead>
+
+<tbody id="memberContributionTable"></tbody>
+
+</table>
+
+</div>
+
+</section>
+
+
+<!-- MEMBER LOANS -->
+
+<section
+id="memberLoans"
+class="member-section hidden"
+>
+
+<h2>My Loans</h2>
+
+<div class="card">
+
+<table>
+
+<thead>
+
+<tr>
+<th>Requested</th>
+<th>Received</th>
+<th>Remaining</th>
+<th>Due Date</th>
+<th>Status</th>
+</tr>
+
+</thead>
+
+<tbody id="memberLoanTable"></tbody>
+
+</table>
+
+</div>
+
+</section>
+
+</div>
 
 </div>
 
@@ -699,7 +986,7 @@ th {
 <script>
 
 /* =========================================
-   GAME SHAKERS DATA
+   SYSTEM DATA
 ========================================= */
 
 let systemData = JSON.parse(
@@ -715,7 +1002,8 @@ let systemData = JSON.parse(
     till: [],
 
     settings: {
-        fridayAmount: 100
+        fridayAmount: 100,
+        tillNumber: "6837759"
     }
 
 };
@@ -751,7 +1039,10 @@ function login() {
         document.getElementById("loginMessage");
 
 
-    /* ADMIN LOGIN */
+    message.innerHTML = "";
+
+
+    /* ADMIN */
 
     if (
         username === "admin" &&
@@ -769,16 +1060,18 @@ function login() {
         openAdmin();
 
         return;
+
     }
 
 
-    /* MEMBER LOGIN */
+    /* MEMBER */
 
     const member =
         systemData.members.find(
             m =>
                 m.username === username &&
-                m.password === password
+                m.password === password &&
+                m.active
         );
 
 
@@ -796,12 +1089,13 @@ function login() {
         openMember(member);
 
         return;
+
     }
 
 
     message.className = "message error";
 
-    message.innerHTML =
+    message.textContent =
         "Invalid username or password.";
 
 }
@@ -818,6 +1112,10 @@ function openAdmin() {
         .classList.add("hidden");
 
     document
+        .getElementById("memberPage")
+        .classList.add("hidden");
+
+    document
         .getElementById("adminPage")
         .classList.remove("hidden");
 
@@ -825,6 +1123,11 @@ function openAdmin() {
         .getElementById("adminName")
         .textContent =
         "System Administrator";
+
+    document.getElementById(
+        "fridayAmount"
+    ).value =
+        systemData.settings.fridayAmount || 100;
 
     updateDashboard();
 
@@ -844,7 +1147,7 @@ function openAdmin() {
 
 
 /* =========================================
-   MEMBER LOGIN
+   OPEN MEMBER
 ========================================= */
 
 function openMember(member) {
@@ -853,11 +1156,15 @@ function openMember(member) {
         .getElementById("loginPage")
         .classList.add("hidden");
 
-    alert(
-        "Welcome " +
-        member.name +
-        ". Member dashboard will be added in the next stage."
-    );
+    document
+        .getElementById("adminPage")
+        .classList.add("hidden");
+
+    document
+        .getElementById("memberPage")
+        .classList.remove("hidden");
+
+    loadMemberDashboard(member);
 
 }
 
@@ -895,7 +1202,26 @@ function showAdminSection(section) {
 
 
 /* =========================================
-   MEMBERS
+   MEMBER NAVIGATION
+========================================= */
+
+function showMemberSection(section) {
+
+    document
+        .querySelectorAll(".member-section")
+        .forEach(
+            el => el.classList.add("hidden")
+        );
+
+    document
+        .getElementById(section)
+        .classList.remove("hidden");
+
+}
+
+
+/* =========================================
+   ADD MEMBER
 ========================================= */
 
 function addMember() {
@@ -922,6 +1248,7 @@ function addMember() {
         );
 
         return;
+
     }
 
 
@@ -940,13 +1267,13 @@ function addMember() {
         );
 
         return;
+
     }
 
 
     const member = {
 
-        id:
-            Date.now(),
+        id: Date.now(),
 
         name,
 
@@ -968,15 +1295,18 @@ function addMember() {
 
     saveData();
 
+
     document.getElementById("memberName").value = "";
     document.getElementById("memberPhone").value = "";
     document.getElementById("memberUsername").value = "";
     document.getElementById("memberPassword").value = "";
 
+
     showMessage(
         "memberMessage",
         "Member added successfully."
     );
+
 
     loadMembers();
 
@@ -1005,21 +1335,23 @@ function loadMembers() {
 
         table.innerHTML += `
 
-            <tr>
+        <tr>
 
-                <td>${member.id}</td>
+        <td>${member.id}</td>
 
-                <td>${escapeHTML(member.name)}</td>
+        <td>${escapeHTML(member.name)}</td>
 
-                <td>${escapeHTML(member.phone || "")}</td>
+        <td>${escapeHTML(member.phone || "")}</td>
 
-                <td>${escapeHTML(member.username)}</td>
+        <td>${escapeHTML(member.username)}</td>
 
-                <td>
-                    ${member.active ? "Active" : "Inactive"}
-                </td>
+        <td>${formatDate(member.joinedDate)}</td>
 
-            </tr>
+        <td>
+        ${member.active ? "Active" : "Inactive"}
+        </td>
+
+        </tr>
 
         `;
 
@@ -1029,19 +1361,30 @@ function loadMembers() {
 
 
 /* =========================================
-   CONTRIBUTION SETTINGS
+   FRIDAY SETTINGS
 ========================================= */
 
 function saveFridayAmount() {
 
     const amount =
         Number(
-            document.getElementById("fridayAmount").value
+            document.getElementById(
+                "fridayAmount"
+            ).value
         );
 
-    if (amount < 0) return;
 
-    systemData.settings.fridayAmount = amount;
+    if (amount < 0) {
+
+        alert("Enter a valid amount.");
+
+        return;
+
+    }
+
+
+    systemData.settings.fridayAmount =
+        amount;
 
     saveData();
 
@@ -1059,22 +1402,133 @@ function saveFridayAmount() {
 function loadContributionMembers() {
 
     const select =
-        document.getElementById("contributionMember");
+        document.getElementById(
+            "contributionMember"
+        );
+
 
     select.innerHTML =
         '<option value="">Select member</option>';
 
+
     systemData.members.forEach(member => {
 
-        select.innerHTML += `
+        if (member.active) {
+
+            select.innerHTML += `
 
             <option value="${member.id}">
-                ${escapeHTML(member.name)}
+            ${escapeHTML(member.name)}
             </option>
 
-        `;
+            `;
+
+        }
 
     });
+
+}
+
+
+/* =========================================
+   PAYMENT TYPE CHANGE
+========================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        document
+            .getElementById("paymentType")
+            .addEventListener(
+                "change",
+                function() {
+
+                    const area =
+                        document.getElementById(
+                            "loanAllocationArea"
+                        );
+
+                    if (
+                        this.value === "loan"
+                    ) {
+
+                        area.classList.remove("hidden");
+
+                        loadRepaymentLoans();
+
+                    } else {
+
+                        area.classList.add("hidden");
+
+                    }
+
+                }
+            );
+
+
+        document
+            .getElementById("contributionMember")
+            .addEventListener(
+                "change",
+                loadRepaymentLoans
+            );
+
+    }
+);
+
+
+/* =========================================
+   LOAD REPAYMENT LOANS
+========================================= */
+
+function loadRepaymentLoans() {
+
+    const memberId =
+        Number(
+            document.getElementById(
+                "contributionMember"
+            ).value
+        );
+
+    const select =
+        document.getElementById(
+            "repaymentLoan"
+        );
+
+
+    select.innerHTML =
+        '<option value="">Select loan</option>';
+
+
+    if (!memberId) return;
+
+
+    systemData.loans
+        .filter(
+            loan =>
+                loan.memberId === memberId &&
+                loan.amountPaid < loan.amountDue
+        )
+        .forEach(loan => {
+
+            const balance =
+                loan.amountDue -
+                loan.amountPaid;
+
+            select.innerHTML += `
+
+            <option value="${loan.id}">
+            Loan KSh ${formatMoney(
+                loan.requestedAmount
+            )} - Balance KSh ${formatMoney(
+                balance
+            )}
+            </option>
+
+            `;
+
+        });
 
 }
 
@@ -1107,7 +1561,7 @@ function recordContribution() {
     const notes =
         document.getElementById(
             "contributionNotes"
-        ).value;
+        ).value.trim();
 
 
     if (!memberId || amount <= 0) {
@@ -1119,6 +1573,7 @@ function recordContribution() {
         );
 
         return;
+
     }
 
 
@@ -1126,6 +1581,76 @@ function recordContribution() {
         systemData.members.find(
             m => m.id === memberId
         );
+
+
+    let loanId = null;
+
+
+    /* LOAN REPAYMENT */
+
+    if (type === "loan") {
+
+        loanId =
+            Number(
+                document.getElementById(
+                    "repaymentLoan"
+                ).value
+            );
+
+
+        if (!loanId) {
+
+            showMessage(
+                "contributionMessage",
+                "Select the loan being repaid.",
+                true
+            );
+
+            return;
+
+        }
+
+
+        const loan =
+            systemData.loans.find(
+                l => l.id === loanId
+            );
+
+
+        if (!loan) return;
+
+
+        const balance =
+            loan.amountDue -
+            loan.amountPaid;
+
+
+        if (amount > balance) {
+
+            showMessage(
+                "contributionMessage",
+                "Payment cannot be greater than the loan balance.",
+                true
+            );
+
+            return;
+
+        }
+
+
+        loan.amountPaid += amount;
+
+
+        if (
+            loan.amountPaid >=
+            loan.amountDue
+        ) {
+
+            loan.status = "PAID";
+
+        }
+
+    }
 
 
     systemData.contributions.push({
@@ -1139,6 +1664,8 @@ function recordContribution() {
         amount,
 
         type,
+
+        loanId,
 
         notes,
 
@@ -1173,6 +1700,7 @@ function recordContribution() {
 
     saveData();
 
+
     document.getElementById(
         "contributionAmount"
     ).value = "";
@@ -1181,14 +1709,20 @@ function recordContribution() {
         "contributionNotes"
     ).value = "";
 
+
     showMessage(
         "contributionMessage",
         "Payment recorded successfully."
     );
 
+
     loadContributions();
 
+    loadLoans();
+
     loadTill();
+
+    loadRepaymentLoans();
 
     updateDashboard();
 
@@ -1215,29 +1749,27 @@ function loadContributions() {
 
             table.innerHTML += `
 
-                <tr>
+            <tr>
 
-                    <td>
-                        ${formatDate(item.date)}
-                    </td>
+            <td>${formatDate(item.date)}</td>
 
-                    <td>
-                        ${escapeHTML(item.memberName)}
-                    </td>
+            <td>
+            ${escapeHTML(item.memberName)}
+            </td>
 
-                    <td>
-                        KSh ${formatMoney(item.amount)}
-                    </td>
+            <td>
+            KSh ${formatMoney(item.amount)}
+            </td>
 
-                    <td>
-                        ${escapeHTML(item.type)}
-                    </td>
+            <td>
+            ${escapeHTML(item.type)}
+            </td>
 
-                    <td>
-                        ${escapeHTML(item.notes || "")}
-                    </td>
+            <td>
+            ${escapeHTML(item.notes || "")}
+            </td>
 
-                </tr>
+            </tr>
 
             `;
 
@@ -1263,7 +1795,6 @@ function calculateLoan() {
     const interest =
         amount * 0.10;
 
-
     const received =
         amount - interest;
 
@@ -1271,19 +1802,22 @@ function calculateLoan() {
     document.getElementById(
         "loanInterest"
     ).textContent =
-        "KSh " + formatMoney(interest);
+        "KSh " +
+        formatMoney(interest);
 
 
     document.getElementById(
         "loanReceived"
     ).textContent =
-        "KSh " + formatMoney(received);
+        "KSh " +
+        formatMoney(received);
 
 
     document.getElementById(
         "loanDue"
     ).textContent =
-        "KSh " + formatMoney(amount);
+        "KSh " +
+        formatMoney(amount);
 
 }
 
@@ -1295,20 +1829,28 @@ function calculateLoan() {
 function loadLoanMembers() {
 
     const select =
-        document.getElementById("loanMember");
+        document.getElementById(
+            "loanMember"
+        );
+
 
     select.innerHTML =
         '<option value="">Select member</option>';
 
+
     systemData.members.forEach(member => {
 
-        select.innerHTML += `
+        if (member.active) {
+
+            select.innerHTML += `
 
             <option value="${member.id}">
-                ${escapeHTML(member.name)}
+            ${escapeHTML(member.name)}
             </option>
 
-        `;
+            `;
+
+        }
 
     });
 
@@ -1345,6 +1887,7 @@ function issueLoan() {
         );
 
         return;
+
     }
 
 
@@ -1357,14 +1900,12 @@ function issueLoan() {
     const interest =
         amount * 0.10;
 
-
     const received =
         amount - interest;
 
 
     const requestDate =
         new Date();
-
 
     const dueDate =
         new Date(requestDate);
@@ -1408,18 +1949,7 @@ function issueLoan() {
     systemData.loans.push(loan);
 
 
-    /*
-       MEMBER RECEIVES:
-
-       Loan request = 10,000
-       Interest = 1,000
-       Cash received = 9,000
-
-       BUT MEMBER OWES = 10,000
-    */
-
-
-    /* CASH PAID OUT */
+    /* MONEY PAID TO MEMBER */
 
     systemData.till.push({
 
@@ -1430,7 +1960,8 @@ function issueLoan() {
         amount: received,
 
         description:
-            "Loan issued to " + member.name,
+            "Loan issued to " +
+            member.name,
 
         date:
             new Date().toISOString()
@@ -1438,7 +1969,7 @@ function issueLoan() {
     });
 
 
-    /* INTEREST ENTERS TILL */
+    /* INTEREST RECORDED */
 
     systemData.till.push({
 
@@ -1449,7 +1980,8 @@ function issueLoan() {
         amount: interest,
 
         description:
-            "Loan interest - " + member.name,
+            "Loan interest deducted immediately - " +
+            member.name,
 
         date:
             new Date().toISOString()
@@ -1469,11 +2001,13 @@ function issueLoan() {
 
     showMessage(
         "loanMessage",
-        "Loan issued successfully. Member receives KSh "
-        + formatMoney(received)
-        + " and owes KSh "
-        + formatMoney(amount)
-        + "."
+
+        "Loan issued successfully. Member receives KSh " +
+        formatMoney(received) +
+        " and must repay KSh " +
+        formatMoney(amount) +
+        " within 30 days."
+
     );
 
 
@@ -1482,6 +2016,43 @@ function issueLoan() {
     loadTill();
 
     updateDashboard();
+
+}
+
+
+/* =========================================
+   GET LOAN STATUS
+========================================= */
+
+function getLoanStatus(loan) {
+
+    const remaining =
+        loan.amountDue -
+        loan.amountPaid;
+
+
+    if (remaining <= 0) {
+
+        return "PAID";
+
+    }
+
+
+    const today =
+        new Date();
+
+    const due =
+        new Date(loan.dueDate);
+
+
+    if (today > due) {
+
+        return "OVERDUE";
+
+    }
+
+
+    return "ACTIVE";
 
 }
 
@@ -1508,75 +2079,53 @@ function loadLoans() {
                 loan.amountDue -
                 loan.amountPaid;
 
-
-            const today =
-                new Date();
-
-
-            const due =
-                new Date(loan.dueDate);
-
-
-            let status =
-                loan.status;
-
-
-            if (
-                remaining <= 0
-            ) {
-
-                status = "PAID";
-
-            } else if (
-                today > due
-            ) {
-
-                status = "OVERDUE";
-
-            }
+            const status =
+                getLoanStatus(loan);
 
 
             table.innerHTML += `
 
-                <tr>
+            <tr>
 
-                    <td>
-                        ${escapeHTML(loan.memberName)}
-                    </td>
+            <td>
+            ${escapeHTML(loan.memberName)}
+            </td>
 
-                    <td>
-                        KSh ${formatMoney(
-                            loan.requestedAmount
-                        )}
-                    </td>
+            <td>
+            KSh ${formatMoney(
+                loan.requestedAmount
+            )}
+            </td>
 
-                    <td>
-                        KSh ${formatMoney(
-                            loan.interest
-                        )}
-                    </td>
+            <td>
+            KSh ${formatMoney(
+                loan.interest
+            )}
+            </td>
 
-                    <td>
-                        KSh ${formatMoney(
-                            loan.amountReceived
-                        )}
-                    </td>
+            <td>
+            KSh ${formatMoney(
+                loan.amountReceived
+            )}
+            </td>
 
-                    <td>
-                        KSh ${formatMoney(
-                            remaining
-                        )}
-                    </td>
+            <td>
+            KSh ${formatMoney(
+                remaining
+            )}
+            </td>
 
-                    <td>
-                        ${formatDate(loan.dueDate)}
-                    </td>
+            <td>
+            ${formatDate(
+                loan.dueDate
+            )}
+            </td>
 
-                    <td>
-                        ${status}
-                    </td>
+            <td>
+            ${status}
+            </td>
 
-                </tr>
+            </tr>
 
             `;
 
@@ -1586,7 +2135,7 @@ function loadLoans() {
 
 
 /* =========================================
-   TILL
+   TILL TRANSACTION
 ========================================= */
 
 function addTillTransaction() {
@@ -1616,6 +2165,7 @@ function addTillTransaction() {
         );
 
         return;
+
     }
 
 
@@ -1678,27 +2228,27 @@ function loadTill() {
 
             table.innerHTML += `
 
-                <tr>
+            <tr>
 
-                    <td>
-                        ${formatDate(item.date)}
-                    </td>
+            <td>
+            ${formatDate(item.date)}
+            </td>
 
-                    <td>
-                        ${item.type}
-                    </td>
+            <td>
+            ${item.type}
+            </td>
 
-                    <td>
-                        KSh ${formatMoney(item.amount)}
-                    </td>
+            <td>
+            KSh ${formatMoney(item.amount)}
+            </td>
 
-                    <td>
-                        ${escapeHTML(
-                            item.description || ""
-                        )}
-                    </td>
+            <td>
+            ${escapeHTML(
+                item.description || ""
+            )}
+            </td>
 
-                </tr>
+            </tr>
 
             `;
 
@@ -1712,7 +2262,8 @@ function loadTill() {
     document.getElementById(
         "tillBalancePage"
     ).textContent =
-        "KSh " + formatMoney(balance);
+        "KSh " +
+        formatMoney(balance);
 
 }
 
@@ -1730,11 +2281,13 @@ function calculateTill() {
 
         if (item.type === "IN") {
 
-            balance += Number(item.amount);
+            balance +=
+                Number(item.amount);
 
         } else {
 
-            balance -= Number(item.amount);
+            balance -=
+                Number(item.amount);
 
         }
 
@@ -1747,7 +2300,7 @@ function calculateTill() {
 
 
 /* =========================================
-   DASHBOARD
+   ADMIN DASHBOARD
 ========================================= */
 
 function updateDashboard() {
@@ -1757,17 +2310,24 @@ function updateDashboard() {
 
 
     const contributions =
-        systemData.contributions.reduce(
-            (sum, item) =>
-                sum + Number(item.amount),
-            0
-        );
+        systemData.contributions
+            .filter(
+                item =>
+                    item.type === "friday"
+            )
+            .reduce(
+                (sum, item) =>
+                    sum +
+                    Number(item.amount),
+                0
+            );
 
 
     const loans =
         systemData.loans.reduce(
             (sum, loan) =>
-                sum + Number(
+                sum +
+                Number(
                     loan.amountReceived
                 ),
             0
@@ -1790,7 +2350,8 @@ function updateDashboard() {
     const interest =
         systemData.loans.reduce(
             (sum, loan) =>
-                sum + Number(loan.interest),
+                sum +
+                Number(loan.interest),
             0
         );
 
@@ -1801,37 +2362,366 @@ function updateDashboard() {
 
     document.getElementById(
         "totalMembers"
-    ).textContent = members;
+    ).textContent =
+        members;
 
 
     document.getElementById(
         "totalContributions"
     ).textContent =
-        "KSh " + formatMoney(contributions);
+        "KSh " +
+        formatMoney(contributions);
 
 
     document.getElementById(
         "totalLoans"
     ).textContent =
-        "KSh " + formatMoney(loans);
+        "KSh " +
+        formatMoney(loans);
 
 
     document.getElementById(
         "outstandingLoans"
     ).textContent =
-        "KSh " + formatMoney(outstanding);
+        "KSh " +
+        formatMoney(outstanding);
 
 
     document.getElementById(
         "totalInterest"
     ).textContent =
-        "KSh " + formatMoney(interest);
+        "KSh " +
+        formatMoney(interest);
 
 
     document.getElementById(
         "tillBalance"
     ).textContent =
-        "KSh " + formatMoney(till);
+        "KSh " +
+        formatMoney(till);
+
+}
+
+
+/* =========================================
+   MEMBER DASHBOARD
+========================================= */
+
+function loadMemberDashboard(member) {
+
+    document.getElementById(
+        "memberWelcomeName"
+    ).textContent =
+        member.name;
+
+
+    document.getElementById(
+        "memberFridayAmount"
+    ).textContent =
+        "KSh " +
+        formatMoney(
+            systemData.settings.fridayAmount
+        );
+
+
+    const contributions =
+        systemData.contributions
+            .filter(
+                item =>
+                    item.memberId === member.id &&
+                    item.type === "friday"
+            )
+            .reduce(
+                (sum, item) =>
+                    sum +
+                    Number(item.amount),
+                0
+            );
+
+
+    document.getElementById(
+        "memberTotalContributions"
+    ).textContent =
+        "KSh " +
+        formatMoney(contributions);
+
+
+    const memberLoans =
+        systemData.loans.filter(
+            loan =>
+                loan.memberId === member.id
+        );
+
+
+    const loanBalance =
+        memberLoans.reduce(
+            (sum, loan) =>
+                sum +
+                Math.max(
+                    0,
+                    loan.amountDue -
+                    loan.amountPaid
+                ),
+            0
+        );
+
+
+    document.getElementById(
+        "memberLoanBalance"
+    ).textContent =
+        "KSh " +
+        formatMoney(loanBalance);
+
+
+    loadMemberActiveLoan(member);
+
+    loadMemberContributions(member);
+
+    loadMemberLoans(member);
+
+}
+
+
+/* =========================================
+   MEMBER ACTIVE LOAN
+========================================= */
+
+function loadMemberActiveLoan(member) {
+
+    const area =
+        document.getElementById(
+            "memberActiveLoan"
+        );
+
+
+    const loans =
+        systemData.loans.filter(
+            loan =>
+                loan.memberId === member.id &&
+                loan.amountPaid < loan.amountDue
+        );
+
+
+    if (loans.length === 0) {
+
+        area.innerHTML =
+            "No active loan.";
+
+        return;
+
+    }
+
+
+    const loan =
+        loans[loans.length - 1];
+
+
+    const remaining =
+        loan.amountDue -
+        loan.amountPaid;
+
+
+    area.innerHTML = `
+
+    <p>
+    <strong>Loan Requested:</strong>
+    KSh ${formatMoney(
+        loan.requestedAmount
+    )}
+    </p>
+
+    <p>
+    <strong>Amount Received:</strong>
+    KSh ${formatMoney(
+        loan.amountReceived
+    )}
+    </p>
+
+    <p>
+    <strong>Remaining Balance:</strong>
+    KSh ${formatMoney(
+        remaining
+    )}
+    </p>
+
+    <p>
+    <strong>Due Date:</strong>
+    ${formatDate(
+        loan.dueDate
+    )}
+    </p>
+
+    <p>
+    <strong>Status:</strong>
+    ${getLoanStatus(loan)}
+    </p>
+
+    `;
+
+}
+
+
+/* =========================================
+   MEMBER CONTRIBUTIONS
+========================================= */
+
+function loadMemberContributions(member) {
+
+    const table =
+        document.getElementById(
+            "memberContributionTable"
+        );
+
+
+    table.innerHTML = "";
+
+
+    const records =
+        systemData.contributions
+            .filter(
+                item =>
+                    item.memberId === member.id
+            )
+            .reverse();
+
+
+    records.forEach(item => {
+
+        table.innerHTML += `
+
+        <tr>
+
+        <td>
+        ${formatDate(item.date)}
+        </td>
+
+        <td>
+        KSh ${formatMoney(item.amount)}
+        </td>
+
+        <td>
+        ${escapeHTML(item.type)}
+        </td>
+
+        <td>
+        ${escapeHTML(item.notes || "")}
+        </td>
+
+        </tr>
+
+        `;
+
+    });
+
+
+    if (records.length === 0) {
+
+        table.innerHTML = `
+
+        <tr>
+
+        <td colspan="4">
+        No payments recorded yet.
+        </td>
+
+        </tr>
+
+        `;
+
+    }
+
+}
+
+
+/* =========================================
+   MEMBER LOANS
+========================================= */
+
+function loadMemberLoans(member) {
+
+    const table =
+        document.getElementById(
+            "memberLoanTable"
+        );
+
+
+    table.innerHTML = "";
+
+
+    const loans =
+        systemData.loans
+            .filter(
+                loan =>
+                    loan.memberId === member.id
+            )
+            .reverse();
+
+
+    loans.forEach(loan => {
+
+        const remaining =
+            loan.amountDue -
+            loan.amountPaid;
+
+
+        const status =
+            getLoanStatus(loan);
+
+
+        table.innerHTML += `
+
+        <tr>
+
+        <td>
+        KSh ${formatMoney(
+            loan.requestedAmount
+        )}
+        </td>
+
+        <td>
+        KSh ${formatMoney(
+            loan.amountReceived
+        )}
+        </td>
+
+        <td>
+        KSh ${formatMoney(
+            remaining
+        )}
+        </td>
+
+        <td>
+        ${formatDate(
+            loan.dueDate
+        )}
+        </td>
+
+        <td>
+        ${status}
+        </td>
+
+        </tr>
+
+        `;
+
+    });
+
+
+    if (loans.length === 0) {
+
+        table.innerHTML = `
+
+        <tr>
+
+        <td colspan="5">
+        No loans recorded.
+        </td>
+
+        </tr>
+
+        `;
+
+    }
 
 }
 
@@ -1900,6 +2790,7 @@ function restoreData() {
         );
 
         return;
+
     }
 
 
@@ -1907,49 +2798,67 @@ function restoreData() {
         new FileReader();
 
 
-    reader.onload = function(event) {
+    reader.onload =
+        function(event) {
 
-        try {
+            try {
 
-            const restored =
-                JSON.parse(
-                    event.target.result
+                const restored =
+                    JSON.parse(
+                        event.target.result
+                    );
+
+
+                if (
+                    !restored.members ||
+                    !restored.contributions ||
+                    !restored.loans ||
+                    !restored.till
+                ) {
+
+                    throw new Error(
+                        "Invalid backup."
+                    );
+
+                }
+
+
+                systemData =
+                    restored;
+
+
+                if (
+                    !systemData.settings
+                ) {
+
+                    systemData.settings = {
+                        fridayAmount: 100,
+                        tillNumber: "6837759"
+                    };
+
+                }
+
+
+                saveData();
+
+
+                alert(
+                    "Backup restored successfully."
                 );
 
 
-            if (
-                !restored.members ||
-                !restored.contributions ||
-                !restored.loans ||
-                !restored.till
-            ) {
+                location.reload();
 
-                throw new Error(
-                    "Invalid backup."
+
+            } catch(error) {
+
+                alert(
+                    "Invalid backup file."
                 );
 
             }
 
-
-            systemData = restored;
-
-            saveData();
-
-            alert(
-                "Backup restored successfully."
-            );
-
-            location.reload();
-
-        } catch(error) {
-
-            alert(
-                "Invalid backup file."
-            );
-
-        }
-
-    };
+        };
 
 
     reader.readAsText(file);
@@ -2001,6 +2910,8 @@ function formatMoney(amount) {
 
 function formatDate(date) {
 
+    if (!date) return "";
+
     return new Date(date)
         .toLocaleDateString(
             "en-KE"
@@ -2035,7 +2946,7 @@ function escapeHTML(value) {
 
 
 /* =========================================
-   STARTUP
+   START SYSTEM
 ========================================= */
 
 (function startSystem() {
@@ -2048,12 +2959,34 @@ function escapeHTML(value) {
         );
 
 
+    if (!currentUser) return;
+
+
     if (
-        currentUser &&
         currentUser.role === "admin"
     ) {
 
         openAdmin();
+
+    }
+
+
+    if (
+        currentUser.role === "member"
+    ) {
+
+        const member =
+            systemData.members.find(
+                m =>
+                    m.id === currentUser.id
+            );
+
+
+        if (member) {
+
+            openMember(member);
+
+        }
 
     }
 
