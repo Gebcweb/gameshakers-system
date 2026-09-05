@@ -1,9 +1,7 @@
-```html
 <!DOCTYPE html>
+
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -43,6 +41,41 @@ header p {
     width: 95%;
     max-width: 1200px;
     margin: 25px auto;
+}
+
+.login-choice {
+    max-width: 600px;
+    margin: 60px auto;
+    text-align: center;
+}
+
+.login-choice h2 {
+    margin-bottom: 30px;
+}
+
+.login-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.choice-button {
+    padding: 35px 20px;
+    font-size: 18px;
+    border-radius: 12px;
+}
+
+.member-button {
+    background: #2563eb;
+}
+
+.member-button:hover {
+    background: #1d4ed8;
+}
+
+.back-button {
+    background: #666;
+    margin-top: 15px;
 }
 
 .login-box {
@@ -192,16 +225,6 @@ th {
     font-weight: bold;
 }
 
-.status-not-paid {
-    color: red;
-    font-weight: bold;
-}
-
-.status-partial {
-    color: #d97706;
-    font-weight: bold;
-}
-
 .status-overdue {
     color: red;
     font-weight: bold;
@@ -212,16 +235,11 @@ th {
     font-weight: bold;
 }
 
-.friday-status {
-    font-size: 22px;
-    font-weight: bold;
-    padding: 15px;
-    border-radius: 8px;
-    text-align: center;
-    margin-top: 10px;
-}
-
 @media(max-width:600px) {
+
+    .login-buttons {
+        grid-template-columns: 1fr;
+    }
 
     header h1 {
         font-size: 20px;
@@ -244,70 +262,166 @@ th {
 
 <body>
 
-
 <header>
 
+```
 <h1>GAME SHAKERS ENTREPRENEUR GROUP</h1>
 
 <p>
-Savings • Loans • Contributions • Till Management
+    Savings • Loans • Contributions • Till Management
 </p>
+```
 
 </header>
 
+<!-- =========================================
+     LOGIN CHOICE PAGE
+========================================= -->
 
+<div id="loginChoicePage" class="container">
 
-<!-- ================= LOGIN PAGE ================= -->
+```
+<div class="login-choice">
 
-<div id="loginPage" class="container">
+    <h2>Welcome to Game Shakers System</h2>
 
+    <p>Please select how you want to log in.</p>
+
+    <div class="login-buttons">
+
+        <button
+            class="choice-button"
+            onclick="showAdminLogin()"
+        >
+            👨‍💼<br><br>
+            ADMINISTRATOR LOGIN
+        </button>
+
+        <button
+            class="choice-button member-button"
+            onclick="showMemberLogin()"
+        >
+            👤<br><br>
+            MEMBER LOGIN
+        </button>
+
+    </div>
+
+</div>
+```
+
+</div>
+
+<!-- =========================================
+     ADMIN LOGIN PAGE
+========================================= -->
+
+<div id="adminLoginPage" class="container hidden">
+
+```
 <div class="login-box">
 
-<h2>System Login</h2>
+    <h2>👨‍💼 Administrator Login</h2>
 
-<div id="loginMessage"></div>
+    <div id="adminLoginMessage"></div>
 
-<label>Username</label>
+    <label>Username</label>
 
-<input
-type="text"
-id="username"
-placeholder="Enter username"
->
+    <input
+        type="text"
+        id="adminUsername"
+        placeholder="Enter administrator username"
+    >
 
-<label>Password</label>
+    <label>Password</label>
 
-<input
-type="password"
-id="password"
-placeholder="Enter password"
->
+    <input
+        type="password"
+        id="adminPassword"
+        placeholder="Enter administrator password"
+    >
 
-<button onclick="login()">
-LOGIN
-</button>
+    <button onclick="adminLogin()">
+        LOGIN AS ADMINISTRATOR
+    </button>
 
-<div class="warning">
+    <button
+        class="back-button"
+        onclick="backToLoginChoice()"
+    >
+        ← BACK
+    </button>
 
-<strong>Administrator First Login</strong>
+    <div class="warning">
 
-<br><br>
+        <strong>Administrator Login Details</strong>
 
-Username: <b>admin</b>
+        <br><br>
 
-<br>
+        Username: <b>admin</b>
 
-Password: <b>admin123</b>
+        <br>
+
+        Password: <b>admin123</b>
+
+    </div>
+
+</div>
+```
 
 </div>
 
-</div>
+<!-- =========================================
+     MEMBER LOGIN PAGE
+========================================= -->
+
+<div id="memberLoginPage" class="container hidden">
+
+```
+<div class="login-box">
+
+    <h2>👤 Member Login</h2>
+
+    <div id="memberLoginMessage"></div>
+
+    <label>Username</label>
+
+    <input
+        type="text"
+        id="memberLoginUsername"
+        placeholder="Enter your username"
+    >
+
+    <label>Password</label>
+
+    <input
+        type="password"
+        id="memberLoginPassword"
+        placeholder="Enter your password"
+    >
+
+    <button
+        class="member-button"
+        onclick="memberLogin()"
+    >
+        LOGIN AS MEMBER
+    </button>
+
+    <button
+        class="back-button"
+        onclick="backToLoginChoice()"
+    >
+        ← BACK
+    </button>
 
 </div>
+```
 
+</div>
 
-
-<!-- ================= ADMIN SYSTEM ================= -->
+<!-- =========================================
+     ADMIN SYSTEM
+========================================= -->
 
 <div id="adminPage" class="hidden">
 
@@ -345,10 +459,6 @@ Logout
 
 </div>
 
-
-
-<!-- ADMIN DASHBOARD -->
-
 <section id="dashboard" class="admin-section">
 
 <h2>Administrator Dashboard</h2>
@@ -361,75 +471,38 @@ Welcome,
 <div class="card-grid">
 
 <div class="card">
-
 <h3>Total Members</h3>
-
-<div class="amount" id="totalMembers">
-0
+<div class="amount" id="totalMembers">0</div>
 </div>
-
-</div>
-
 
 <div class="card">
-
 <h3>Total Contributions</h3>
-
-<div class="amount" id="totalContributions">
-KSh 0
+<div class="amount" id="totalContributions">KSh 0</div>
 </div>
-
-</div>
-
 
 <div class="card">
-
 <h3>Loans Issued</h3>
-
-<div class="amount" id="totalLoans">
-KSh 0
+<div class="amount" id="totalLoans">KSh 0</div>
 </div>
-
-</div>
-
 
 <div class="card">
-
 <h3>Outstanding Loans</h3>
-
-<div class="amount" id="outstandingLoans">
-KSh 0
+<div class="amount" id="outstandingLoans">KSh 0</div>
 </div>
-
-</div>
-
 
 <div class="card">
-
 <h3>Interest Earned</h3>
-
-<div class="amount" id="totalInterest">
-KSh 0
+<div class="amount" id="totalInterest">KSh 0</div>
 </div>
-
-</div>
-
 
 <div class="card">
-
 <h3>Group Till</h3>
-
-<div class="amount" id="tillBalance">
-KSh 0
-</div>
-
+<div class="amount" id="tillBalance">KSh 0</div>
 </div>
 
 </div>
 
 </section>
-
-
 
 <!-- MEMBERS -->
 
@@ -441,17 +514,13 @@ KSh 0
 
 <h3>Add New Member</h3>
 
-<label>Full Name</label>
-<input type="text" id="memberName">
+<label>Full Name</label> <input type="text" id="memberName">
 
-<label>Phone Number</label>
-<input type="text" id="memberPhone">
+<label>Phone Number</label> <input type="text" id="memberPhone">
 
-<label>Username</label>
-<input type="text" id="memberUsername">
+<label>Username</label> <input type="text" id="memberUsername">
 
-<label>Password</label>
-<input type="password" id="memberPassword">
+<label>Password</label> <input type="password" id="memberPassword">
 
 <button onclick="addMember()">
 ADD MEMBER
@@ -461,7 +530,6 @@ ADD MEMBER
 
 </div>
 
-
 <div class="card section">
 
 <h3>Registered Members</h3>
@@ -469,7 +537,6 @@ ADD MEMBER
 <table>
 
 <thead>
-
 <tr>
 <th>ID</th>
 <th>Name</th>
@@ -478,7 +545,6 @@ ADD MEMBER
 <th>Joined</th>
 <th>Status</th>
 </tr>
-
 </thead>
 
 <tbody id="membersTable"></tbody>
@@ -488,8 +554,6 @@ ADD MEMBER
 </div>
 
 </section>
-
-
 
 <!-- CONTRIBUTIONS -->
 
@@ -508,6 +572,7 @@ type="number"
 id="fridayAmount"
 value="100"
 min="0"
+
 >
 
 <button onclick="saveFridayAmount()">
@@ -516,22 +581,13 @@ SAVE CONTRIBUTION AMOUNT
 
 </div>
 
-
 <div class="card section">
 
 <h3>Manual Payment Allocation</h3>
 
-<label>Member</label>
+<label>Member</label> <select id="contributionMember"></select>
 
-<select id="contributionMember"></select>
-
-<label>Amount</label>
-
-<input
-type="number"
-id="contributionAmount"
-min="1"
->
+<label>Amount</label> <input type="number" id="contributionAmount" min="1">
 
 <label>Payment Type</label>
 
@@ -551,15 +607,11 @@ Other Payment
 
 </select>
 
-
 <div id="loanAllocationArea" class="hidden">
 
-<label>Select Loan for Repayment</label>
-
-<select id="repaymentLoan"></select>
+<label>Select Loan for Repayment</label> <select id="repaymentLoan"></select>
 
 </div>
-
 
 <label>Notes</label>
 
@@ -567,6 +619,7 @@ Other Payment
 type="text"
 id="contributionNotes"
 placeholder="Optional notes"
+
 >
 
 <button onclick="recordContribution()">
@@ -577,7 +630,6 @@ RECORD PAYMENT
 
 </div>
 
-
 <div class="card section">
 
 <h3>Payment History</h3>
@@ -585,7 +637,6 @@ RECORD PAYMENT
 <table>
 
 <thead>
-
 <tr>
 <th>Date</th>
 <th>Member</th>
@@ -593,7 +644,6 @@ RECORD PAYMENT
 <th>Type</th>
 <th>Notes</th>
 </tr>
-
 </thead>
 
 <tbody id="contributionTable"></tbody>
@@ -603,8 +653,6 @@ RECORD PAYMENT
 </div>
 
 </section>
-
-
 
 <!-- LOANS -->
 
@@ -616,9 +664,7 @@ RECORD PAYMENT
 
 <h3>Issue New Loan</h3>
 
-<label>Member</label>
-
-<select id="loanMember"></select>
+<label>Member</label> <select id="loanMember"></select>
 
 <label>Loan Amount Requested</label>
 
@@ -627,12 +673,10 @@ type="number"
 id="loanAmount"
 min="1"
 oninput="calculateLoan()"
+
 >
 
-<p>
-Interest Rate:
-<strong>10%</strong>
-</p>
+<p>Interest Rate: <strong>10%</strong></p>
 
 <p>
 Interest:
@@ -662,7 +706,6 @@ ISSUE LOAN
 
 </div>
 
-
 <div class="card section">
 
 <h3>Loan Records</h3>
@@ -670,7 +713,6 @@ ISSUE LOAN
 <table>
 
 <thead>
-
 <tr>
 <th>Member</th>
 <th>Requested</th>
@@ -680,7 +722,6 @@ ISSUE LOAN
 <th>Due Date</th>
 <th>Status</th>
 </tr>
-
 </thead>
 
 <tbody id="loanTable"></tbody>
@@ -691,9 +732,7 @@ ISSUE LOAN
 
 </section>
 
-
-
-<!-- GROUP TILL -->
+<!-- TILL -->
 
 <section id="till" class="admin-section hidden">
 
@@ -703,7 +742,7 @@ ISSUE LOAN
 
 <h3>Payment Till Number</h3>
 
-<div class="till-number" id="adminTillNumber">
+<div class="till-number">
 6837759
 </div>
 
@@ -712,7 +751,6 @@ Members should use this till number when making group payments.
 </p>
 
 </div>
-
 
 <div class="card section">
 
@@ -724,7 +762,6 @@ KSh 0
 
 </div>
 
-
 <div class="card section">
 
 <h3>Manual Till Transaction</h3>
@@ -732,15 +769,8 @@ KSh 0
 <label>Transaction Type</label>
 
 <select id="tillType">
-
-<option value="IN">
-MONEY IN
-</option>
-
-<option value="OUT">
-MONEY OUT
-</option>
-
+<option value="IN">MONEY IN</option>
+<option value="OUT">MONEY OUT</option>
 </select>
 
 <label>Amount</label>
@@ -749,6 +779,7 @@ MONEY OUT
 type="number"
 id="tillAmount"
 min="1"
+
 >
 
 <label>Description</label>
@@ -756,6 +787,7 @@ min="1"
 <input
 type="text"
 id="tillDescription"
+
 >
 
 <button onclick="addTillTransaction()">
@@ -764,7 +796,6 @@ RECORD TRANSACTION
 
 </div>
 
-
 <div class="card section">
 
 <h3>Till Transactions</h3>
@@ -772,14 +803,12 @@ RECORD TRANSACTION
 <table>
 
 <thead>
-
 <tr>
 <th>Date</th>
 <th>Type</th>
 <th>Amount</th>
 <th>Description</th>
 </tr>
-
 </thead>
 
 <tbody id="tillTable"></tbody>
@@ -789,8 +818,6 @@ RECORD TRANSACTION
 </div>
 
 </section>
-
-
 
 <!-- BACKUP -->
 
@@ -812,7 +839,6 @@ DOWNLOAD BACKUP
 
 </div>
 
-
 <div class="card section">
 
 <h3>Restore Data</h3>
@@ -825,6 +851,7 @@ Select a previously downloaded backup file.
 type="file"
 id="restoreFile"
 accept=".json"
+
 >
 
 <button onclick="restoreData()">
@@ -839,9 +866,9 @@ RESTORE BACKUP
 
 </div>
 
-
-
-<!-- ================= MEMBER SYSTEM ================= -->
+<!-- =========================================
+     MEMBER SYSTEM
+========================================= -->
 
 <div id="memberPage" class="hidden">
 
@@ -867,10 +894,6 @@ Logout
 
 </div>
 
-
-
-<!-- MEMBER DASHBOARD -->
-
 <section id="memberDashboard" class="member-section">
 
 <h2>
@@ -878,88 +901,31 @@ Welcome,
 <span id="memberWelcomeName"></span>
 </h2>
 
-
 <div class="card">
 
 <h3>Group Payment Information</h3>
 
-<p>
-Group Till Number
-</p>
+<p>Group Till Number</p>
 
-<div class="till-number" id="memberTillNumber">
+<div class="till-number">
 6837759
 </div>
 
-<p>
-Use this till number when making your group payments.
-</p>
+<p>Use this till number for group payments.</p>
 
 </div>
 
-
-
-<!-- FRIDAY STATUS -->
-
-<div class="card section">
-
-<h3>Current Friday Contribution Status</h3>
-
-<p>
-Contribution Date:
-<strong id="currentFridayDate"></strong>
-</p>
-
 <div class="card-grid">
 
-<div>
+<div class="card">
 
-<p>Required Amount</p>
+<h3>Required Friday Contribution</h3>
 
 <div class="amount" id="memberFridayAmount">
 KSh 0
 </div>
 
 </div>
-
-
-<div>
-
-<p>Amount Paid</p>
-
-<div class="amount" id="memberFridayPaid">
-KSh 0
-</div>
-
-</div>
-
-
-<div>
-
-<p>Remaining</p>
-
-<div class="amount" id="memberFridayRemaining">
-KSh 0
-</div>
-
-</div>
-
-</div>
-
-<div
-id="memberFridayStatus"
-class="friday-status"
->
-NOT PAID
-</div>
-
-</div>
-
-
-
-<!-- MEMBER SUMMARY -->
-
-<div class="card-grid">
 
 <div class="card">
 
@@ -970,7 +936,6 @@ KSh 0
 </div>
 
 </div>
-
 
 <div class="card">
 
@@ -984,27 +949,17 @@ KSh 0
 
 </div>
 
-
-
-<!-- ACTIVE LOAN -->
-
 <div class="card section">
 
 <h3>My Active Loan</h3>
 
 <div id="memberActiveLoan">
-
 No active loan.
-
 </div>
 
 </div>
 
 </section>
-
-
-
-<!-- MEMBER CONTRIBUTIONS -->
 
 <section
 id="memberContributions"
@@ -1018,14 +973,12 @@ class="member-section hidden"
 <table>
 
 <thead>
-
 <tr>
 <th>Date</th>
 <th>Amount</th>
 <th>Type</th>
 <th>Notes</th>
 </tr>
-
 </thead>
 
 <tbody id="memberContributionTable"></tbody>
@@ -1035,10 +988,6 @@ class="member-section hidden"
 </div>
 
 </section>
-
-
-
-<!-- MEMBER LOANS -->
 
 <section
 id="memberLoans"
@@ -1052,7 +1001,6 @@ class="member-section hidden"
 <table>
 
 <thead>
-
 <tr>
 <th>Requested</th>
 <th>Received</th>
@@ -1060,7 +1008,6 @@ class="member-section hidden"
 <th>Due Date</th>
 <th>Status</th>
 </tr>
-
 </thead>
 
 <tbody id="memberLoanTable"></tbody>
@@ -1075,8 +1022,6 @@ class="member-section hidden"
 
 </div>
 
-
-
 <script>
 
 /* =========================================
@@ -1088,11 +1033,8 @@ let systemData = JSON.parse(
 ) || {
 
     members: [],
-
     contributions: [],
-
     loans: [],
-
     till: [],
 
     settings: {
@@ -1101,26 +1043,6 @@ let systemData = JSON.parse(
     }
 
 };
-
-
-/* =========================================
-   ENSURE SETTINGS EXIST
-========================================= */
-
-if (!systemData.settings) {
-
-    systemData.settings = {
-        fridayAmount: 100,
-        tillNumber: "6837759"
-    };
-
-}
-
-if (!systemData.settings.tillNumber) {
-
-    systemData.settings.tillNumber = "6837759";
-
-}
 
 
 /* =========================================
@@ -1138,25 +1060,82 @@ function saveData() {
 
 
 /* =========================================
-   LOGIN
+   LOGIN PAGE NAVIGATION
 ========================================= */
 
-function login() {
+function hideAllLoginPages() {
+
+    document.getElementById(
+        "loginChoicePage"
+    ).classList.add("hidden");
+
+    document.getElementById(
+        "adminLoginPage"
+    ).classList.add("hidden");
+
+    document.getElementById(
+        "memberLoginPage"
+    ).classList.add("hidden");
+
+}
+
+
+function showAdminLogin() {
+
+    hideAllLoginPages();
+
+    document.getElementById(
+        "adminLoginPage"
+    ).classList.remove("hidden");
+
+}
+
+
+function showMemberLogin() {
+
+    hideAllLoginPages();
+
+    document.getElementById(
+        "memberLoginPage"
+    ).classList.remove("hidden");
+
+}
+
+
+function backToLoginChoice() {
+
+    hideAllLoginPages();
+
+    document.getElementById(
+        "loginChoicePage"
+    ).classList.remove("hidden");
+
+}
+
+
+/* =========================================
+   ADMIN LOGIN
+========================================= */
+
+function adminLogin() {
 
     const username =
-        document.getElementById("username").value.trim();
+        document.getElementById(
+            "adminUsername"
+        ).value.trim();
 
     const password =
-        document.getElementById("password").value;
+        document.getElementById(
+            "adminPassword"
+        ).value;
 
     const message =
-        document.getElementById("loginMessage");
-
+        document.getElementById(
+            "adminLoginMessage"
+        );
 
     message.innerHTML = "";
 
-
-    /* ADMIN LOGIN */
 
     if (
         username === "admin" &&
@@ -1178,7 +1157,30 @@ function login() {
     }
 
 
-    /* MEMBER LOGIN */
+    showMessage(
+        "adminLoginMessage",
+        "Invalid administrator username or password.",
+        true
+    );
+
+}
+
+
+/* =========================================
+   MEMBER LOGIN
+========================================= */
+
+function memberLogin() {
+
+    const username =
+        document.getElementById(
+            "memberLoginUsername"
+        ).value.trim();
+
+    const password =
+        document.getElementById(
+            "memberLoginPassword"
+        ).value;
 
     const member =
         systemData.members.find(
@@ -1207,10 +1209,11 @@ function login() {
     }
 
 
-    message.className = "message error";
-
-    message.textContent =
-        "Invalid username or password.";
+    showMessage(
+        "memberLoginMessage",
+        "Invalid member username or password.",
+        true
+    );
 
 }
 
@@ -1221,49 +1224,32 @@ function login() {
 
 function openAdmin() {
 
-    document
-        .getElementById("loginPage")
-        .classList.add("hidden");
+    hideAllLoginPages();
 
-    document
-        .getElementById("memberPage")
-        .classList.add("hidden");
+    document.getElementById(
+        "memberPage"
+    ).classList.add("hidden");
 
-    document
-        .getElementById("adminPage")
-        .classList.remove("hidden");
+    document.getElementById(
+        "adminPage"
+    ).classList.remove("hidden");
 
-
-    document
-        .getElementById("adminName")
-        .textContent =
+    document.getElementById(
+        "adminName"
+    ).textContent =
         "System Administrator";
-
 
     document.getElementById(
         "fridayAmount"
     ).value =
         systemData.settings.fridayAmount || 100;
 
-
-    document.getElementById(
-        "adminTillNumber"
-    ).textContent =
-        systemData.settings.tillNumber;
-
-
     updateDashboard();
-
     loadMembers();
-
     loadContributionMembers();
-
     loadLoanMembers();
-
     loadContributions();
-
     loadLoans();
-
     loadTill();
 
 }
@@ -1275,18 +1261,15 @@ function openAdmin() {
 
 function openMember(member) {
 
-    document
-        .getElementById("loginPage")
-        .classList.add("hidden");
+    hideAllLoginPages();
 
-    document
-        .getElementById("adminPage")
-        .classList.add("hidden");
+    document.getElementById(
+        "adminPage"
+    ).classList.add("hidden");
 
-    document
-        .getElementById("memberPage")
-        .classList.remove("hidden");
-
+    document.getElementById(
+        "memberPage"
+    ).classList.remove("hidden");
 
     loadMemberDashboard(member);
 
@@ -1301,7 +1284,15 @@ function logout() {
 
     localStorage.removeItem("currentUser");
 
-    location.reload();
+    document.getElementById(
+        "adminPage"
+    ).classList.add("hidden");
+
+    document.getElementById(
+        "memberPage"
+    ).classList.add("hidden");
+
+    backToLoginChoice();
 
 }
 
@@ -1398,15 +1389,10 @@ function addMember() {
     const member = {
 
         id: Date.now(),
-
         name,
-
         phone,
-
         username,
-
         password,
-
         active: true,
 
         joinedDate:
@@ -1433,11 +1419,8 @@ function addMember() {
 
 
     loadMembers();
-
     loadContributionMembers();
-
     loadLoanMembers();
-
     updateDashboard();
 
 }
@@ -1641,11 +1624,8 @@ function loadRepaymentLoans() {
             select.innerHTML += `
 
             <option value="${loan.id}">
-            Loan KSh ${formatMoney(
-                loan.requestedAmount
-            )} - Balance KSh ${formatMoney(
-                balance
-            )}
+            Loan KSh ${formatMoney(loan.requestedAmount)}
+            - Balance KSh ${formatMoney(balance)}
             </option>
 
             `;
@@ -1708,8 +1688,6 @@ function recordContribution() {
     let loanId = null;
 
 
-    /* LOAN REPAYMENT */
-
     if (type === "loan") {
 
         loanId =
@@ -1764,8 +1742,7 @@ function recordContribution() {
 
 
         if (
-            loan.amountPaid >=
-            loan.amountDue
+            loan.amountPaid >= loan.amountDue
         ) {
 
             loan.status = "PAID";
@@ -1778,17 +1755,11 @@ function recordContribution() {
     systemData.contributions.push({
 
         id: Date.now(),
-
         memberId,
-
         memberName: member.name,
-
         amount,
-
         type,
-
         loanId,
-
         notes,
 
         date:
@@ -1797,14 +1768,10 @@ function recordContribution() {
     });
 
 
-    /* MONEY ENTERS TILL */
-
     systemData.till.push({
 
         id: Date.now() + 1,
-
         type: "IN",
-
         amount,
 
         description:
@@ -1839,13 +1806,9 @@ function recordContribution() {
 
 
     loadContributions();
-
     loadLoans();
-
     loadTill();
-
     loadRepaymentLoans();
-
     updateDashboard();
 
 }
@@ -1924,22 +1887,19 @@ function calculateLoan() {
     document.getElementById(
         "loanInterest"
     ).textContent =
-        "KSh " +
-        formatMoney(interest);
+        "KSh " + formatMoney(interest);
 
 
     document.getElementById(
         "loanReceived"
     ).textContent =
-        "KSh " +
-        formatMoney(received);
+        "KSh " + formatMoney(received);
 
 
     document.getElementById(
         "loanDue"
     ).textContent =
-        "KSh " +
-        formatMoney(amount);
+        "KSh " + formatMoney(amount);
 
 }
 
@@ -2040,21 +2000,13 @@ function issueLoan() {
     const loan = {
 
         id: Date.now(),
-
         memberId,
-
         memberName: member.name,
-
         requestedAmount: amount,
-
         interestRate: 10,
-
         interest,
-
         amountReceived: received,
-
         amountDue: amount,
-
         amountPaid: 0,
 
         requestDate:
@@ -2071,14 +2023,10 @@ function issueLoan() {
     systemData.loans.push(loan);
 
 
-    /* MONEY PAID TO MEMBER */
-
     systemData.till.push({
 
         id: Date.now() + 1,
-
         type: "OUT",
-
         amount: received,
 
         description:
@@ -2091,14 +2039,10 @@ function issueLoan() {
     });
 
 
-    /* INTEREST RECORDED */
-
     systemData.till.push({
 
         id: Date.now() + 2,
-
         type: "IN",
-
         amount: interest,
 
         description:
@@ -2134,9 +2078,7 @@ function issueLoan() {
 
 
     loadLoans();
-
     loadTill();
-
     updateDashboard();
 
 }
@@ -2209,38 +2151,26 @@ function loadLoans() {
 
             <tr>
 
+            <td>${escapeHTML(loan.memberName)}</td>
+
             <td>
-            ${escapeHTML(loan.memberName)}
+            KSh ${formatMoney(loan.requestedAmount)}
             </td>
 
             <td>
-            KSh ${formatMoney(
-                loan.requestedAmount
-            )}
+            KSh ${formatMoney(loan.interest)}
             </td>
 
             <td>
-            KSh ${formatMoney(
-                loan.interest
-            )}
+            KSh ${formatMoney(loan.amountReceived)}
             </td>
 
             <td>
-            KSh ${formatMoney(
-                loan.amountReceived
-            )}
+            KSh ${formatMoney(remaining)}
             </td>
 
             <td>
-            KSh ${formatMoney(
-                remaining
-            )}
-            </td>
-
-            <td>
-            ${formatDate(
-                loan.dueDate
-            )}
+            ${formatDate(loan.dueDate)}
             </td>
 
             <td>
@@ -2282,9 +2212,7 @@ function addTillTransaction() {
 
     if (amount <= 0) {
 
-        alert(
-            "Enter a valid amount."
-        );
+        alert("Enter a valid amount.");
 
         return;
 
@@ -2294,11 +2222,8 @@ function addTillTransaction() {
     systemData.till.push({
 
         id: Date.now(),
-
         type,
-
         amount,
-
         description,
 
         date:
@@ -2320,12 +2245,9 @@ function addTillTransaction() {
 
 
     loadTill();
-
     updateDashboard();
 
-    alert(
-        "Till transaction recorded."
-    );
+    alert("Till transaction recorded.");
 
 }
 
@@ -2365,9 +2287,7 @@ function loadTill() {
             </td>
 
             <td>
-            ${escapeHTML(
-                item.description || ""
-            )}
+            ${escapeHTML(item.description || "")}
             </td>
 
             </tr>
@@ -2403,13 +2323,11 @@ function calculateTill() {
 
         if (item.type === "IN") {
 
-            balance +=
-                Number(item.amount);
+            balance += Number(item.amount);
 
         } else {
 
-            balance -=
-                Number(item.amount);
+            balance -= Number(item.amount);
 
         }
 
@@ -2434,13 +2352,11 @@ function updateDashboard() {
     const contributions =
         systemData.contributions
             .filter(
-                item =>
-                    item.type === "friday"
+                item => item.type === "friday"
             )
             .reduce(
                 (sum, item) =>
-                    sum +
-                    Number(item.amount),
+                    sum + Number(item.amount),
                 0
             );
 
@@ -2449,9 +2365,7 @@ function updateDashboard() {
         systemData.loans.reduce(
             (sum, loan) =>
                 sum +
-                Number(
-                    loan.amountReceived
-                ),
+                Number(loan.amountReceived),
             0
         );
 
@@ -2526,72 +2440,6 @@ function updateDashboard() {
 
 
 /* =========================================
-   GET CURRENT FRIDAY
-========================================= */
-
-function getCurrentFriday() {
-
-    const today =
-        new Date();
-
-    const day =
-        today.getDay();
-
-    const friday =
-        new Date(today);
-
-
-    const daysUntilFriday =
-        (5 - day + 7) % 7;
-
-
-    friday.setDate(
-        today.getDate() +
-        daysUntilFriday
-    );
-
-
-    friday.setHours(
-        0,
-        0,
-        0,
-        0
-    );
-
-
-    return friday;
-
-}
-
-
-/* =========================================
-   SAME DATE CHECK
-========================================= */
-
-function isSameDate(date1, date2) {
-
-    const d1 =
-        new Date(date1);
-
-    const d2 =
-        new Date(date2);
-
-
-    return (
-        d1.getFullYear() ===
-        d2.getFullYear() &&
-
-        d1.getMonth() ===
-        d2.getMonth() &&
-
-        d1.getDate() ===
-        d2.getDate()
-    );
-
-}
-
-
-/* =========================================
    MEMBER DASHBOARD
 ========================================= */
 
@@ -2604,124 +2452,13 @@ function loadMemberDashboard(member) {
 
 
     document.getElementById(
-        "memberTillNumber"
-    ).textContent =
-        systemData.settings.tillNumber ||
-        "6837759";
-
-
-    const fridayAmount =
-        Number(
-            systemData.settings.fridayAmount
-        ) || 0;
-
-
-    document.getElementById(
         "memberFridayAmount"
     ).textContent =
         "KSh " +
-        formatMoney(fridayAmount);
-
-
-    const friday =
-        getCurrentFriday();
-
-
-    document.getElementById(
-        "currentFridayDate"
-    ).textContent =
-        formatDate(friday);
-
-
-    /*
-       FIND PAYMENTS FOR CURRENT FRIDAY
-    */
-
-    const fridayPaid =
-        systemData.contributions
-            .filter(
-                item =>
-                    item.memberId === member.id &&
-                    item.type === "friday" &&
-                    isSameDate(
-                        item.date,
-                        friday
-                    )
-            )
-            .reduce(
-                (sum, item) =>
-                    sum +
-                    Number(item.amount),
-                0
-            );
-
-
-    const fridayRemaining =
-        Math.max(
-            0,
-            fridayAmount - fridayPaid
+        formatMoney(
+            systemData.settings.fridayAmount
         );
 
-
-    document.getElementById(
-        "memberFridayPaid"
-    ).textContent =
-        "KSh " +
-        formatMoney(fridayPaid);
-
-
-    document.getElementById(
-        "memberFridayRemaining"
-    ).textContent =
-        "KSh " +
-        formatMoney(fridayRemaining);
-
-
-    const statusArea =
-        document.getElementById(
-            "memberFridayStatus"
-        );
-
-
-    if (
-        fridayPaid >= fridayAmount &&
-        fridayAmount > 0
-    ) {
-
-        statusArea.textContent =
-            "✓ PAID";
-
-        statusArea.className =
-            "friday-status status-paid";
-
-    }
-
-    else if (
-        fridayPaid > 0
-    ) {
-
-        statusArea.textContent =
-            "⚠ PARTIALLY PAID";
-
-        statusArea.className =
-            "friday-status status-partial";
-
-    }
-
-    else {
-
-        statusArea.textContent =
-            "✗ NOT PAID";
-
-        statusArea.className =
-            "friday-status status-not-paid";
-
-    }
-
-
-    /*
-       TOTAL CONTRIBUTIONS
-    */
 
     const contributions =
         systemData.contributions
@@ -2745,10 +2482,6 @@ function loadMemberDashboard(member) {
         formatMoney(contributions);
 
 
-    /*
-       MEMBER LOANS
-    */
-
     const memberLoans =
         systemData.loans.filter(
             loan =>
@@ -2762,8 +2495,8 @@ function loadMemberDashboard(member) {
                 sum +
                 Math.max(
                     0,
-                    Number(loan.amountDue) -
-                    Number(loan.amountPaid)
+                    loan.amountDue -
+                    loan.amountPaid
                 ),
             0
         );
@@ -2777,9 +2510,7 @@ function loadMemberDashboard(member) {
 
 
     loadMemberActiveLoan(member);
-
     loadMemberContributions(member);
-
     loadMemberLoans(member);
 
 }
@@ -2828,37 +2559,22 @@ function loadMemberActiveLoan(member) {
 
     <p>
     <strong>Loan Requested:</strong>
-    KSh ${formatMoney(
-        loan.requestedAmount
-    )}
-    </p>
-
-    <p>
-    <strong>Interest (10%):</strong>
-    KSh ${formatMoney(
-        loan.interest
-    )}
+    KSh ${formatMoney(loan.requestedAmount)}
     </p>
 
     <p>
     <strong>Amount Received:</strong>
-    KSh ${formatMoney(
-        loan.amountReceived
-    )}
+    KSh ${formatMoney(loan.amountReceived)}
     </p>
 
     <p>
     <strong>Remaining Balance:</strong>
-    KSh ${formatMoney(
-        remaining
-    )}
+    KSh ${formatMoney(remaining)}
     </p>
 
     <p>
     <strong>Due Date:</strong>
-    ${formatDate(
-        loan.dueDate
-    )}
+    ${formatDate(loan.dueDate)}
     </p>
 
     <p>
@@ -2983,27 +2699,19 @@ function loadMemberLoans(member) {
         <tr>
 
         <td>
-        KSh ${formatMoney(
-            loan.requestedAmount
-        )}
+        KSh ${formatMoney(loan.requestedAmount)}
         </td>
 
         <td>
-        KSh ${formatMoney(
-            loan.amountReceived
-        )}
+        KSh ${formatMoney(loan.amountReceived)}
         </td>
 
         <td>
-        KSh ${formatMoney(
-            remaining
-        )}
+        KSh ${formatMoney(remaining)}
         </td>
 
         <td>
-        ${formatDate(
-            loan.dueDate
-        )}
+        ${formatDate(loan.dueDate)}
         </td>
 
         <td>
@@ -3137,24 +2845,14 @@ function restoreData() {
                     restored;
 
 
-                if (
-                    !systemData.settings
-                ) {
+                if (!systemData.settings) {
 
                     systemData.settings = {
+
                         fridayAmount: 100,
                         tillNumber: "6837759"
+
                     };
-
-                }
-
-
-                if (
-                    !systemData.settings.tillNumber
-                ) {
-
-                    systemData.settings.tillNumber =
-                        "6837759";
 
                 }
 
@@ -3233,9 +2931,7 @@ function formatDate(date) {
     if (!date) return "";
 
     return new Date(date)
-        .toLocaleDateString(
-            "en-KE"
-        );
+        .toLocaleDateString("en-KE");
 
 }
 
@@ -3282,18 +2978,14 @@ function escapeHTML(value) {
     if (!currentUser) return;
 
 
-    if (
-        currentUser.role === "admin"
-    ) {
+    if (currentUser.role === "admin") {
 
         openAdmin();
 
     }
 
 
-    if (
-        currentUser.role === "member"
-    ) {
+    if (currentUser.role === "member") {
 
         const member =
             systemData.members.find(
@@ -3302,9 +2994,15 @@ function escapeHTML(value) {
             );
 
 
-        if (member) {
+        if (member && member.active) {
 
             openMember(member);
+
+        } else {
+
+            localStorage.removeItem(
+                "currentUser"
+            );
 
         }
 
@@ -3315,6 +3013,4 @@ function escapeHTML(value) {
 </script>
 
 </body>
-
 </html>
-```
