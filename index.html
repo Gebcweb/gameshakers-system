@@ -1,6 +1,9 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -189,6 +192,16 @@ th {
     font-weight: bold;
 }
 
+.status-not-paid {
+    color: red;
+    font-weight: bold;
+}
+
+.status-partial {
+    color: #d97706;
+    font-weight: bold;
+}
+
 .status-overdue {
     color: red;
     font-weight: bold;
@@ -197,6 +210,15 @@ th {
 .status-active {
     color: #12372a;
     font-weight: bold;
+}
+
+.friday-status {
+    font-size: 22px;
+    font-weight: bold;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    margin-top: 10px;
 }
 
 @media(max-width:600px) {
@@ -217,71 +239,75 @@ th {
 }
 
 </style>
+
 </head>
 
 <body>
 
+
 <header>
 
-    <h1>GAME SHAKERS ENTREPRENEUR GROUP</h1>
+<h1>GAME SHAKERS ENTREPRENEUR GROUP</h1>
 
-    <p>
-        Savings • Loans • Contributions • Till Management
-    </p>
+<p>
+Savings • Loans • Contributions • Till Management
+</p>
 
 </header>
 
 
-<!-- LOGIN PAGE -->
+
+<!-- ================= LOGIN PAGE ================= -->
 
 <div id="loginPage" class="container">
 
-    <div class="login-box">
+<div class="login-box">
 
-        <h2>System Login</h2>
+<h2>System Login</h2>
 
-        <div id="loginMessage"></div>
+<div id="loginMessage"></div>
 
-        <label>Username</label>
+<label>Username</label>
 
-        <input
-            type="text"
-            id="username"
-            placeholder="Enter username"
-        >
+<input
+type="text"
+id="username"
+placeholder="Enter username"
+>
 
-        <label>Password</label>
+<label>Password</label>
 
-        <input
-            type="password"
-            id="password"
-            placeholder="Enter password"
-        >
+<input
+type="password"
+id="password"
+placeholder="Enter password"
+>
 
-        <button onclick="login()">
-            LOGIN
-        </button>
+<button onclick="login()">
+LOGIN
+</button>
 
-        <div class="warning">
+<div class="warning">
 
-            <strong>Administrator First Login</strong>
+<strong>Administrator First Login</strong>
 
-            <br><br>
+<br><br>
 
-            Username: <b>admin</b>
+Username: <b>admin</b>
 
-            <br>
+<br>
 
-            Password: <b>admin123</b>
+Password: <b>admin123</b>
 
-        </div>
+</div>
 
-    </div>
+</div>
 
 </div>
 
 
-<!-- ADMIN SYSTEM -->
+
+<!-- ================= ADMIN SYSTEM ================= -->
 
 <div id="adminPage" class="hidden">
 
@@ -320,7 +346,8 @@ Logout
 </div>
 
 
-<!-- DASHBOARD -->
+
+<!-- ADMIN DASHBOARD -->
 
 <section id="dashboard" class="admin-section">
 
@@ -403,6 +430,7 @@ KSh 0
 </section>
 
 
+
 <!-- MEMBERS -->
 
 <section id="members" class="admin-section hidden">
@@ -460,6 +488,7 @@ ADD MEMBER
 </div>
 
 </section>
+
 
 
 <!-- CONTRIBUTIONS -->
@@ -576,6 +605,7 @@ RECORD PAYMENT
 </section>
 
 
+
 <!-- LOANS -->
 
 <section id="loans" class="admin-section hidden">
@@ -662,7 +692,8 @@ ISSUE LOAN
 </section>
 
 
-<!-- TILL -->
+
+<!-- GROUP TILL -->
 
 <section id="till" class="admin-section hidden">
 
@@ -672,7 +703,7 @@ ISSUE LOAN
 
 <h3>Payment Till Number</h3>
 
-<div class="till-number">
+<div class="till-number" id="adminTillNumber">
 6837759
 </div>
 
@@ -760,6 +791,7 @@ RECORD TRANSACTION
 </section>
 
 
+
 <!-- BACKUP -->
 
 <section id="backup" class="admin-section hidden">
@@ -808,7 +840,8 @@ RESTORE BACKUP
 </div>
 
 
-<!-- MEMBER SYSTEM -->
+
+<!-- ================= MEMBER SYSTEM ================= -->
 
 <div id="memberPage" class="hidden">
 
@@ -835,6 +868,7 @@ Logout
 </div>
 
 
+
 <!-- MEMBER DASHBOARD -->
 
 <section id="memberDashboard" class="member-section">
@@ -853,18 +887,34 @@ Welcome,
 Group Till Number
 </p>
 
-<div class="till-number">
+<div class="till-number" id="memberTillNumber">
 6837759
 </div>
 
+<p>
+Use this till number when making your group payments.
+</p>
+
 </div>
 
 
+
+<!-- FRIDAY STATUS -->
+
+<div class="card section">
+
+<h3>Current Friday Contribution Status</h3>
+
+<p>
+Contribution Date:
+<strong id="currentFridayDate"></strong>
+</p>
+
 <div class="card-grid">
 
-<div class="card">
+<div>
 
-<h3>Required Friday Contribution</h3>
+<p>Required Amount</p>
 
 <div class="amount" id="memberFridayAmount">
 KSh 0
@@ -872,6 +922,44 @@ KSh 0
 
 </div>
 
+
+<div>
+
+<p>Amount Paid</p>
+
+<div class="amount" id="memberFridayPaid">
+KSh 0
+</div>
+
+</div>
+
+
+<div>
+
+<p>Remaining</p>
+
+<div class="amount" id="memberFridayRemaining">
+KSh 0
+</div>
+
+</div>
+
+</div>
+
+<div
+id="memberFridayStatus"
+class="friday-status"
+>
+NOT PAID
+</div>
+
+</div>
+
+
+
+<!-- MEMBER SUMMARY -->
+
+<div class="card-grid">
 
 <div class="card">
 
@@ -897,6 +985,9 @@ KSh 0
 </div>
 
 
+
+<!-- ACTIVE LOAN -->
+
 <div class="card section">
 
 <h3>My Active Loan</h3>
@@ -910,6 +1001,7 @@ No active loan.
 </div>
 
 </section>
+
 
 
 <!-- MEMBER CONTRIBUTIONS -->
@@ -943,6 +1035,7 @@ class="member-section hidden"
 </div>
 
 </section>
+
 
 
 <!-- MEMBER LOANS -->
@@ -983,6 +1076,7 @@ class="member-section hidden"
 </div>
 
 
+
 <script>
 
 /* =========================================
@@ -1007,6 +1101,26 @@ let systemData = JSON.parse(
     }
 
 };
+
+
+/* =========================================
+   ENSURE SETTINGS EXIST
+========================================= */
+
+if (!systemData.settings) {
+
+    systemData.settings = {
+        fridayAmount: 100,
+        tillNumber: "6837759"
+    };
+
+}
+
+if (!systemData.settings.tillNumber) {
+
+    systemData.settings.tillNumber = "6837759";
+
+}
 
 
 /* =========================================
@@ -1042,7 +1156,7 @@ function login() {
     message.innerHTML = "";
 
 
-    /* ADMIN */
+    /* ADMIN LOGIN */
 
     if (
         username === "admin" &&
@@ -1064,7 +1178,7 @@ function login() {
     }
 
 
-    /* MEMBER */
+    /* MEMBER LOGIN */
 
     const member =
         systemData.members.find(
@@ -1119,15 +1233,24 @@ function openAdmin() {
         .getElementById("adminPage")
         .classList.remove("hidden");
 
+
     document
         .getElementById("adminName")
         .textContent =
         "System Administrator";
 
+
     document.getElementById(
         "fridayAmount"
     ).value =
         systemData.settings.fridayAmount || 100;
+
+
+    document.getElementById(
+        "adminTillNumber"
+    ).textContent =
+        systemData.settings.tillNumber;
+
 
     updateDashboard();
 
@@ -1163,6 +1286,7 @@ function openMember(member) {
     document
         .getElementById("memberPage")
         .classList.remove("hidden");
+
 
     loadMemberDashboard(member);
 
@@ -1431,7 +1555,7 @@ function loadContributionMembers() {
 
 
 /* =========================================
-   PAYMENT TYPE CHANGE
+   PAYMENT EVENTS
 ========================================= */
 
 document.addEventListener(
@@ -1449,9 +1573,7 @@ document.addEventListener(
                             "loanAllocationArea"
                         );
 
-                    if (
-                        this.value === "loan"
-                    ) {
+                    if (this.value === "loan") {
 
                         area.classList.remove("hidden");
 
@@ -2404,6 +2526,72 @@ function updateDashboard() {
 
 
 /* =========================================
+   GET CURRENT FRIDAY
+========================================= */
+
+function getCurrentFriday() {
+
+    const today =
+        new Date();
+
+    const day =
+        today.getDay();
+
+    const friday =
+        new Date(today);
+
+
+    const daysUntilFriday =
+        (5 - day + 7) % 7;
+
+
+    friday.setDate(
+        today.getDate() +
+        daysUntilFriday
+    );
+
+
+    friday.setHours(
+        0,
+        0,
+        0,
+        0
+    );
+
+
+    return friday;
+
+}
+
+
+/* =========================================
+   SAME DATE CHECK
+========================================= */
+
+function isSameDate(date1, date2) {
+
+    const d1 =
+        new Date(date1);
+
+    const d2 =
+        new Date(date2);
+
+
+    return (
+        d1.getFullYear() ===
+        d2.getFullYear() &&
+
+        d1.getMonth() ===
+        d2.getMonth() &&
+
+        d1.getDate() ===
+        d2.getDate()
+    );
+
+}
+
+
+/* =========================================
    MEMBER DASHBOARD
 ========================================= */
 
@@ -2416,13 +2604,124 @@ function loadMemberDashboard(member) {
 
 
     document.getElementById(
+        "memberTillNumber"
+    ).textContent =
+        systemData.settings.tillNumber ||
+        "6837759";
+
+
+    const fridayAmount =
+        Number(
+            systemData.settings.fridayAmount
+        ) || 0;
+
+
+    document.getElementById(
         "memberFridayAmount"
     ).textContent =
         "KSh " +
-        formatMoney(
-            systemData.settings.fridayAmount
+        formatMoney(fridayAmount);
+
+
+    const friday =
+        getCurrentFriday();
+
+
+    document.getElementById(
+        "currentFridayDate"
+    ).textContent =
+        formatDate(friday);
+
+
+    /*
+       FIND PAYMENTS FOR CURRENT FRIDAY
+    */
+
+    const fridayPaid =
+        systemData.contributions
+            .filter(
+                item =>
+                    item.memberId === member.id &&
+                    item.type === "friday" &&
+                    isSameDate(
+                        item.date,
+                        friday
+                    )
+            )
+            .reduce(
+                (sum, item) =>
+                    sum +
+                    Number(item.amount),
+                0
+            );
+
+
+    const fridayRemaining =
+        Math.max(
+            0,
+            fridayAmount - fridayPaid
         );
 
+
+    document.getElementById(
+        "memberFridayPaid"
+    ).textContent =
+        "KSh " +
+        formatMoney(fridayPaid);
+
+
+    document.getElementById(
+        "memberFridayRemaining"
+    ).textContent =
+        "KSh " +
+        formatMoney(fridayRemaining);
+
+
+    const statusArea =
+        document.getElementById(
+            "memberFridayStatus"
+        );
+
+
+    if (
+        fridayPaid >= fridayAmount &&
+        fridayAmount > 0
+    ) {
+
+        statusArea.textContent =
+            "✓ PAID";
+
+        statusArea.className =
+            "friday-status status-paid";
+
+    }
+
+    else if (
+        fridayPaid > 0
+    ) {
+
+        statusArea.textContent =
+            "⚠ PARTIALLY PAID";
+
+        statusArea.className =
+            "friday-status status-partial";
+
+    }
+
+    else {
+
+        statusArea.textContent =
+            "✗ NOT PAID";
+
+        statusArea.className =
+            "friday-status status-not-paid";
+
+    }
+
+
+    /*
+       TOTAL CONTRIBUTIONS
+    */
 
     const contributions =
         systemData.contributions
@@ -2446,6 +2745,10 @@ function loadMemberDashboard(member) {
         formatMoney(contributions);
 
 
+    /*
+       MEMBER LOANS
+    */
+
     const memberLoans =
         systemData.loans.filter(
             loan =>
@@ -2459,8 +2762,8 @@ function loadMemberDashboard(member) {
                 sum +
                 Math.max(
                     0,
-                    loan.amountDue -
-                    loan.amountPaid
+                    Number(loan.amountDue) -
+                    Number(loan.amountPaid)
                 ),
             0
         );
@@ -2527,6 +2830,13 @@ function loadMemberActiveLoan(member) {
     <strong>Loan Requested:</strong>
     KSh ${formatMoney(
         loan.requestedAmount
+    )}
+    </p>
+
+    <p>
+    <strong>Interest (10%):</strong>
+    KSh ${formatMoney(
+        loan.interest
     )}
     </p>
 
@@ -2839,6 +3149,16 @@ function restoreData() {
                 }
 
 
+                if (
+                    !systemData.settings.tillNumber
+                ) {
+
+                    systemData.settings.tillNumber =
+                        "6837759";
+
+                }
+
+
                 saveData();
 
 
@@ -2995,4 +3315,6 @@ function escapeHTML(value) {
 </script>
 
 </body>
+
 </html>
+```
