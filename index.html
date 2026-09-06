@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
 
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
-    <title>My SACCO | Savings & Loans</title>
+    <title>MySACCO | Savings & Loans</title>
+
 
     <style>
 
@@ -17,14 +20,30 @@
             font-family: Arial, sans-serif;
         }
 
+
         body {
             background: #f4f7f6;
             color: #222;
         }
 
-        /* =========================
+
+        /* =========================================
+           PAGES
+        ========================================= */
+
+        .page {
+            display: none;
+        }
+
+
+        .page.active {
+            display: block;
+        }
+
+
+        /* =========================================
            NAVIGATION
-        ========================= */
+        ========================================= */
 
         nav {
             background: #063d35;
@@ -38,20 +57,23 @@
 
             position: sticky;
             top: 0;
+
             z-index: 1000;
 
             box-shadow: 0 3px 10px rgba(0,0,0,0.2);
         }
 
+
         .logo {
             font-size: 24px;
             font-weight: bold;
-            color: #ffffff;
         }
+
 
         .logo span {
             color: #f6c344;
         }
+
 
         .nav-links {
             display: flex;
@@ -59,19 +81,22 @@
             align-items: center;
         }
 
+
         .nav-links a {
             color: white;
             text-decoration: none;
             cursor: pointer;
         }
 
+
         .nav-links a:hover {
             color: #f6c344;
         }
 
-        /* =========================
+
+        /* =========================================
            BUTTONS
-        ========================= */
+        ========================================= */
 
         button {
             border: none;
@@ -81,16 +106,23 @@
             transition: 0.3s;
         }
 
+
+        button:hover {
+            transform: translateY(-2px);
+        }
+
+
         .btn-primary {
             background: #10a37f;
             color: white;
             padding: 13px 25px;
         }
 
+
         .btn-primary:hover {
             background: #087a5f;
-            transform: translateY(-2px);
         }
+
 
         .btn-secondary {
             background: #f6c344;
@@ -98,10 +130,11 @@
             padding: 13px 25px;
         }
 
+
         .btn-secondary:hover {
             background: #e4af25;
-            transform: translateY(-2px);
         }
+
 
         .btn-admin {
             background: #16213e;
@@ -109,11 +142,20 @@
             padding: 13px 25px;
         }
 
-        /* =========================
-           HERO SECTION
-        ========================= */
+
+        .logout {
+            background: #e74c3c;
+            color: white;
+            padding: 10px 18px;
+        }
+
+
+        /* =========================================
+           HOME HERO
+        ========================================= */
 
         .hero {
+
             min-height: 580px;
 
             display: flex;
@@ -122,10 +164,12 @@
             padding: 60px 7%;
 
             background:
+
                 linear-gradient(
                     rgba(6,61,53,0.82),
                     rgba(6,61,53,0.82)
                 ),
+
                 url("images/246156.jpg");
 
             background-size: cover;
@@ -134,18 +178,22 @@
             color: white;
         }
 
+
         .hero-content {
             max-width: 650px;
         }
+
 
         .hero h1 {
             font-size: 55px;
             margin-bottom: 20px;
         }
 
+
         .hero h1 span {
             color: #f6c344;
         }
+
 
         .hero p {
             font-size: 19px;
@@ -154,24 +202,28 @@
             color: #e4eeee;
         }
 
+
         .hero-buttons {
             display: flex;
             gap: 15px;
             flex-wrap: wrap;
         }
 
-        /* =========================
-           SECTION
-        ========================= */
+
+        /* =========================================
+           SECTIONS
+        ========================================= */
 
         .section {
             padding: 70px 7%;
         }
 
+
         .section-title {
             text-align: center;
             margin-bottom: 45px;
         }
+
 
         .section-title h2 {
             font-size: 36px;
@@ -179,16 +231,19 @@
             margin-bottom: 10px;
         }
 
+
         .section-title p {
             color: #666;
             font-size: 17px;
         }
 
-        /* =========================
+
+        /* =========================================
            FEATURES
-        ========================= */
+        ========================================= */
 
         .features {
+
             display: grid;
 
             grid-template-columns:
@@ -197,7 +252,9 @@
             gap: 25px;
         }
 
+
         .feature-card {
+
             background: white;
 
             padding: 30px;
@@ -212,30 +269,36 @@
             transition: 0.3s;
         }
 
+
         .feature-card:hover {
             transform: translateY(-8px);
         }
+
 
         .feature-icon {
             font-size: 45px;
             margin-bottom: 15px;
         }
 
+
         .feature-card h3 {
             color: #063d35;
             margin-bottom: 12px;
         }
+
 
         .feature-card p {
             color: #666;
             line-height: 1.6;
         }
 
-        /* =========================
+
+        /* =========================================
            IMAGE GALLERY
-        ========================= */
+        ========================================= */
 
         .gallery {
+
             display: grid;
 
             grid-template-columns:
@@ -244,7 +307,9 @@
             gap: 25px;
         }
 
+
         .gallery-card {
+
             background: white;
 
             border-radius: 15px;
@@ -255,7 +320,9 @@
                 0 5px 20px rgba(0,0,0,0.1);
         }
 
+
         .gallery-card img {
+
             width: 100%;
             height: 220px;
 
@@ -266,32 +333,29 @@
             transition: 0.4s;
         }
 
+
         .gallery-card:hover img {
             transform: scale(1.05);
         }
 
+
         .gallery-card .text {
             padding: 20px;
         }
+
 
         .gallery-card h3 {
             color: #063d35;
             margin-bottom: 10px;
         }
 
-        /* =========================
-           LOGIN PAGE
-        ========================= */
 
-        .page {
-            display: none;
-        }
-
-        .page.active {
-            display: block;
-        }
+        /* =========================================
+           LOGIN
+        ========================================= */
 
         .login-page {
+
             min-height: 100vh;
 
             display: flex;
@@ -301,17 +365,21 @@
             padding: 30px;
 
             background:
+
                 linear-gradient(
                     rgba(6,61,53,0.85),
                     rgba(6,61,53,0.85)
                 ),
+
                 url("images/246157.jpg");
 
             background-size: cover;
             background-position: center;
         }
 
+
         .login-box {
+
             width: 100%;
             max-width: 430px;
 
@@ -325,25 +393,38 @@
                 0 15px 40px rgba(0,0,0,0.3);
         }
 
+
         .login-box h2 {
+
             text-align: center;
             color: #063d35;
+
             margin-bottom: 10px;
         }
 
+
         .login-box p {
+
             text-align: center;
             color: #777;
+
             margin-bottom: 25px;
         }
 
-        .login-box label {
+
+        label {
+
             display: block;
+
+            margin-top: 15px;
             margin-bottom: 7px;
+
             font-weight: bold;
         }
 
-        .login-box input {
+
+        input {
+
             width: 100%;
 
             padding: 14px;
@@ -352,38 +433,45 @@
 
             border-radius: 8px;
 
-            margin-bottom: 18px;
-
             font-size: 16px;
         }
 
-        .login-box input:focus {
+
+        input:focus {
+
             outline: none;
+
             border-color: #10a37f;
         }
 
+
         .login-box button {
             width: 100%;
-            padding: 15px;
-        }
-
-        .back-btn {
-            background: #eee;
-            color: #333;
-
             margin-top: 15px;
         }
 
-        /* =========================
-           MEMBER DASHBOARD
-        ========================= */
+
+        .back-btn {
+
+            background: #eee;
+            color: #333;
+        }
+
+
+        /* =========================================
+           DASHBOARD
+        ========================================= */
 
         .dashboard {
+
             min-height: 100vh;
+
             background: #f4f7f6;
         }
 
+
         .dashboard-header {
+
             background: #063d35;
 
             color: white;
@@ -401,34 +489,31 @@
             gap: 15px;
         }
 
-        .dashboard-header h2 {
-            font-size: 24px;
-        }
-
-        .logout {
-            background: #e74c3c;
-            color: white;
-            padding: 10px 18px;
-        }
 
         .dashboard-content {
             padding: 35px 5%;
         }
 
+
         .welcome {
             margin-bottom: 30px;
         }
 
+
         .welcome h1 {
+
             color: #063d35;
+
             margin-bottom: 8px;
         }
 
-        /* =========================
+
+        /* =========================================
            STATS
-        ========================= */
+        ========================================= */
 
         .stats {
+
             display: grid;
 
             grid-template-columns:
@@ -439,7 +524,9 @@
             margin-bottom: 30px;
         }
 
+
         .stat-card {
+
             background: white;
 
             padding: 25px;
@@ -450,37 +537,49 @@
                 0 5px 15px rgba(0,0,0,0.08);
         }
 
+
         .stat-card h4 {
+
             color: #777;
+
             margin-bottom: 12px;
         }
 
+
         .stat-card h2 {
+
             color: #063d35;
+
             font-size: 28px;
         }
+
 
         .green {
             border-left: 5px solid #10a37f;
         }
 
+
         .yellow {
             border-left: 5px solid #f6c344;
         }
+
 
         .blue {
             border-left: 5px solid #3498db;
         }
 
+
         .red {
             border-left: 5px solid #e74c3c;
         }
 
-        /* =========================
-           ACTION BUTTONS
-        ========================= */
+
+        /* =========================================
+           ACTIONS
+        ========================================= */
 
         .actions {
+
             display: grid;
 
             grid-template-columns:
@@ -491,7 +590,9 @@
             margin-bottom: 30px;
         }
 
+
         .action-card {
+
             background: white;
 
             padding: 25px;
@@ -508,21 +609,29 @@
             transition: 0.3s;
         }
 
+
         .action-card:hover {
+
             transform: translateY(-5px);
+
             background: #eaf8f4;
         }
 
+
         .action-card .icon {
+
             font-size: 40px;
+
             margin-bottom: 12px;
         }
 
-        /* =========================
+
+        /* =========================================
            ACTIVITY
-        ========================= */
+        ========================================= */
 
         .activity {
+
             background: white;
 
             padding: 25px;
@@ -533,43 +642,59 @@
                 0 5px 15px rgba(0,0,0,0.08);
         }
 
+
         .activity h2 {
+
             color: #063d35;
+
             margin-bottom: 20px;
         }
 
+
         .activity-item {
+
             display: flex;
 
             justify-content: space-between;
+
+            align-items: center;
 
             padding: 18px 0;
 
             border-bottom: 1px solid #eee;
         }
 
+
         .activity-item:last-child {
             border-bottom: none;
         }
 
+
         .positive {
+
             color: #10a37f;
+
             font-weight: bold;
         }
+
 
         .negative {
+
             color: #e74c3c;
+
             font-weight: bold;
         }
 
-        /* =========================
-           ADMIN IMAGE
-        ========================= */
+
+        /* =========================================
+           DASHBOARD IMAGE
+        ========================================= */
 
         .dashboard-banner {
+
             width: 100%;
 
-            height: 250px;
+            height: 280px;
 
             object-fit: cover;
 
@@ -578,12 +703,15 @@
             margin-bottom: 30px;
         }
 
-        /* =========================
+
+        /* =========================================
            FOOTER
-        ========================= */
+        ========================================= */
 
         footer {
+
             background: #062b25;
+
             color: white;
 
             padding: 35px 7%;
@@ -591,9 +719,10 @@
             text-align: center;
         }
 
-        /* =========================
+
+        /* =========================================
            RESPONSIVE
-        ========================= */
+        ========================================= */
 
         @media (max-width: 700px) {
 
@@ -601,43 +730,51 @@
                 padding: 15px 5%;
             }
 
+
             .nav-links {
                 display: none;
             }
+
 
             .hero {
                 min-height: 600px;
                 padding: 50px 7%;
             }
 
+
             .hero h1 {
                 font-size: 38px;
             }
 
-            .hero p {
-                font-size: 16px;
-            }
 
             .section {
                 padding: 50px 5%;
             }
 
+
             .section-title h2 {
                 font-size: 28px;
             }
+
 
             .dashboard-content {
                 padding: 25px 4%;
             }
 
+
             .activity-item {
+
                 flex-direction: column;
+
+                align-items: flex-start;
+
                 gap: 8px;
             }
 
         }
 
     </style>
+
 </head>
 
 
@@ -645,13 +782,11 @@
 
 
 <!-- =========================================
-     HOME PAGE
+HOME PAGE
 ========================================= -->
 
 <div id="homePage" class="page active">
 
-
-    <!-- NAVIGATION -->
 
     <nav>
 
@@ -668,9 +803,8 @@
 
             <a href="#about">About Us</a>
 
-            <button
-                class="btn-primary"
-                onclick="showMemberLogin()">
+            <button class="btn-primary"
+                    onclick="showMemberLogin()">
 
                 Member Login
 
@@ -681,8 +815,6 @@
     </nav>
 
 
-
-    <!-- HERO -->
 
     <section class="hero">
 
@@ -710,18 +842,16 @@
 
             <div class="hero-buttons">
 
-                <button
-                    class="btn-primary"
-                    onclick="showMemberLogin()">
+                <button class="btn-primary"
+                        onclick="showMemberLogin()">
 
                     👤 Member Login
 
                 </button>
 
 
-                <button
-                    class="btn-secondary"
-                    onclick="showAdminLogin()">
+                <button class="btn-secondary"
+                        onclick="showAdminLogin()">
 
                     🛡️ Admin Login
 
@@ -744,15 +874,14 @@
             <h2>Our SACCO Services</h2>
 
             <p>
-                Everything you need to manage your savings
-                and financial growth.
+                Everything you need to manage savings,
+                loans and financial growth.
             </p>
 
         </div>
 
 
         <div class="features">
-
 
             <div class="feature-card">
 
@@ -768,7 +897,6 @@
             </div>
 
 
-
             <div class="feature-card">
 
                 <div class="feature-icon">🏦</div>
@@ -776,12 +904,11 @@
                 <h3>Loans</h3>
 
                 <p>
-                    Request loans and monitor your
+                    Request loans and monitor
                     repayment progress.
                 </p>
 
             </div>
-
 
 
             <div class="feature-card">
@@ -791,12 +918,11 @@
                 <h3>Financial Reports</h3>
 
                 <p>
-                    View your savings, loans and
-                    transactions in one place.
+                    View savings, loans and transactions
+                    in one place.
                 </p>
 
             </div>
-
 
 
             <div class="feature-card">
@@ -806,12 +932,11 @@
                 <h3>Digital Access</h3>
 
                 <p>
-                    Access your SACCO information
-                    directly from your phone.
+                    Access your SACCO directly
+                    from your phone.
                 </p>
 
             </div>
-
 
         </div>
 
@@ -819,7 +944,7 @@
 
 
 
-    <!-- IMAGE GALLERY -->
+    <!-- GALLERY -->
 
     <section class="section">
 
@@ -828,8 +953,7 @@
             <h2>Modern Digital SACCO</h2>
 
             <p>
-                Designed for members, groups and
-                administrators.
+                Designed for members and administrators.
             </p>
 
         </div>
@@ -840,16 +964,15 @@
 
             <div class="gallery-card">
 
-                <img src="images/246153.jpg"
-                     alt="SACCO Mobile Dashboard">
+                <img src="images/246153.jpg">
 
                 <div class="text">
 
                     <h3>Member Dashboard</h3>
 
                     <p>
-                        Members can monitor savings,
-                        contributions and loans.
+                        Monitor savings, contributions
+                        and loans.
                     </p>
 
                 </div>
@@ -857,19 +980,16 @@
             </div>
 
 
-
             <div class="gallery-card">
 
-                <img src="images/246154.jpg"
-                     alt="Digital Payments">
+                <img src="images/246154.jpg">
 
                 <div class="text">
 
                     <h3>Digital Payments</h3>
 
                     <p>
-                        Modern financial management
-                        using mobile technology.
+                        Modern financial management.
                     </p>
 
                 </div>
@@ -877,19 +997,16 @@
             </div>
 
 
-
             <div class="gallery-card">
 
-                <img src="images/246155.jpg"
-                     alt="Group Activity">
+                <img src="images/246155.jpg">
 
                 <div class="text">
 
                     <h3>Group Management</h3>
 
                     <p>
-                        Track SACCO activities and
-                        group financial performance.
+                        Manage SACCO activities.
                     </p>
 
                 </div>
@@ -897,19 +1014,16 @@
             </div>
 
 
-
             <div class="gallery-card">
 
-                <img src="images/246156.jpg"
-                     alt="Mobile SACCO">
+                <img src="images/246156.jpg">
 
                 <div class="text">
 
                     <h3>Financial Inclusion</h3>
 
                     <p>
-                        Bringing digital SACCO services
-                        closer to everyone.
+                        Digital SACCO services for everyone.
                     </p>
 
                 </div>
@@ -917,19 +1031,16 @@
             </div>
 
 
-
             <div class="gallery-card">
 
-                <img src="images/246157.jpg"
-                     alt="SACCO Members">
+                <img src="images/246157.jpg">
 
                 <div class="text">
 
                     <h3>Saving Together</h3>
 
                     <p>
-                        Members working together to
-                        build a stronger future.
+                        Building a stronger financial future.
                     </p>
 
                 </div>
@@ -937,25 +1048,21 @@
             </div>
 
 
-
             <div class="gallery-card">
 
-                <img src="images/246158.jpg"
-                     alt="Financial Dashboard">
+                <img src="images/246158.jpg">
 
                 <div class="text">
 
                     <h3>Smart Analytics</h3>
 
                     <p>
-                        Easy-to-understand financial
-                        information and reports.
+                        Easy financial reports and information.
                     </p>
 
                 </div>
 
             </div>
-
 
         </div>
 
@@ -965,20 +1072,17 @@
 
     <!-- ABOUT -->
 
-    <section
-        class="section"
-        id="about"
-        style="background:#eaf5f2;">
+    <section class="section"
+             id="about"
+             style="background:#eaf5f2;">
 
         <div class="section-title">
 
             <h2>Why Join MySACCO?</h2>
 
             <p>
-
-                We make group savings and loan
-                management simple, transparent and secure.
-
+                Simple, transparent and secure SACCO
+                management.
             </p>
 
         </div>
@@ -986,14 +1090,12 @@
 
         <div class="features">
 
-
             <div class="feature-card">
 
                 <h3>🔒 Secure</h3>
 
                 <p>
-                    Your financial information is managed
-                    securely.
+                    Your information is managed securely.
                 </p>
 
             </div>
@@ -1004,8 +1106,7 @@
                 <h3>👥 Transparent</h3>
 
                 <p>
-                    Members and administrators can clearly
-                    track transactions.
+                    Track SACCO transactions clearly.
                 </p>
 
             </div>
@@ -1016,12 +1117,10 @@
                 <h3>⚡ Easy</h3>
 
                 <p>
-                    Simple tools for contributions,
-                    loans and repayments.
+                    Easy contributions, loans and repayments.
                 </p>
 
             </div>
-
 
         </div>
 
@@ -1035,15 +1134,11 @@
 
         <br>
 
-        <p>
-            Saving Together • Growing Together
-        </p>
+        <p>Saving Together • Growing Together</p>
 
         <br>
 
-        <p>
-            © 2026 MySACCO. All Rights Reserved.
-        </p>
+        <p>© 2026 MySACCO. All Rights Reserved.</p>
 
     </footer>
 
@@ -1053,7 +1148,7 @@
 
 
 <!-- =========================================
-     MEMBER LOGIN PAGE
+MEMBER LOGIN
 ========================================= -->
 
 <div id="memberLoginPage" class="page">
@@ -1064,37 +1159,31 @@
 
             <h2>👤 Member Login</h2>
 
-            <p>
-                Login to access your SACCO account
-            </p>
+            <p>Login to access your SACCO account</p>
 
 
             <label>Phone Number</label>
 
-            <input
-                type="text"
-                placeholder="Enter your phone number">
+            <input type="text"
+                   placeholder="Enter phone number">
 
 
             <label>Password</label>
 
-            <input
-                type="password"
-                placeholder="Enter your password">
+            <input type="password"
+                   placeholder="Enter password">
 
 
-            <button
-                class="btn-primary"
-                onclick="showMemberDashboard()">
+            <button class="btn-primary"
+                    onclick="showMemberDashboard()">
 
                 Login as Member
 
             </button>
 
 
-            <button
-                class="back-btn"
-                onclick="showHome()">
+            <button class="back-btn"
+                    onclick="showHome()">
 
                 ← Back to Home
 
@@ -1109,7 +1198,7 @@
 
 
 <!-- =========================================
-     ADMIN LOGIN PAGE
+ADMIN LOGIN
 ========================================= -->
 
 <div id="adminLoginPage" class="page">
@@ -1121,37 +1210,32 @@
             <h2>🛡️ Admin Login</h2>
 
             <p>
-                Login to manage members and SACCO
-                activities.
+                Login to manage your SACCO.
             </p>
 
 
             <label>Admin Username</label>
 
-            <input
-                type="text"
-                placeholder="Enter admin username">
+            <input type="text"
+                   placeholder="Enter username">
 
 
             <label>Password</label>
 
-            <input
-                type="password"
-                placeholder="Enter admin password">
+            <input type="password"
+                   placeholder="Enter password">
 
 
-            <button
-                class="btn-admin"
-                onclick="showAdminDashboard()">
+            <button class="btn-admin"
+                    onclick="showAdminDashboard()">
 
                 Login as Admin
 
             </button>
 
 
-            <button
-                class="back-btn"
-                onclick="showHome()">
+            <button class="back-btn"
+                    onclick="showHome()">
 
                 ← Back to Home
 
@@ -1166,7 +1250,7 @@
 
 
 <!-- =========================================
-     MEMBER DASHBOARD
+MEMBER DASHBOARD
 ========================================= -->
 
 <div id="memberDashboard" class="page">
@@ -1178,10 +1262,8 @@
 
             <h2>💰 MySACCO Member Dashboard</h2>
 
-
-            <button
-                class="logout"
-                onclick="showHome()">
+            <button class="logout"
+                    onclick="showHome()">
 
                 Logout
 
@@ -1200,17 +1282,13 @@
 
                 <p>
                     Welcome to your SACCO account.
-                    Here is your financial overview.
                 </p>
 
             </div>
 
 
 
-            <!-- STATS -->
-
             <div class="stats">
-
 
                 <div class="stat-card green">
 
@@ -1219,7 +1297,6 @@
                     <h2>KES 25,000</h2>
 
                 </div>
-
 
 
                 <div class="stat-card yellow">
@@ -1231,7 +1308,6 @@
                 </div>
 
 
-
                 <div class="stat-card blue">
 
                     <h4>Loan Balance</h4>
@@ -1239,7 +1315,6 @@
                     <h2>KES 9,000</h2>
 
                 </div>
-
 
 
                 <div class="stat-card red">
@@ -1250,17 +1325,11 @@
 
                 </div>
 
-
             </div>
 
 
 
-            <!-- QUICK ACTIONS -->
-
-            <h2
-                style="
-                color:#063d35;
-                margin-bottom:20px;">
+            <h2 style="color:#063d35;margin-bottom:20px;">
 
                 Quick Actions
 
@@ -1269,10 +1338,8 @@
 
             <div class="actions">
 
-
-                <div
-                    class="action-card"
-                    onclick="alert('Contribution feature will open here.')">
+                <div class="action-card"
+                     onclick="showMemberContributions()">
 
                     <div class="icon">💰</div>
 
@@ -1283,24 +1350,20 @@
                 </div>
 
 
-
-                <div
-                    class="action-card"
-                    onclick="alert('Loan request feature will open here.')">
+                <div class="action-card"
+                     onclick="showMemberLoans()">
 
                     <div class="icon">🏦</div>
 
                     <h3>Request Loan</h3>
 
-                    <p>Apply for a SACCO loan</p>
+                    <p>Apply for a loan</p>
 
                 </div>
 
 
-
-                <div
-                    class="action-card"
-                    onclick="alert('Transaction history will open here.')">
+                <div class="action-card"
+                     onclick="showMemberTransactions()">
 
                     <div class="icon">📄</div>
 
@@ -1311,25 +1374,20 @@
                 </div>
 
 
-
-                <div
-                    class="action-card"
-                    onclick="alert('Profile feature will open here.')">
+                <div class="action-card"
+                     onclick="alert('Profile page will be added next.')">
 
                     <div class="icon">👤</div>
 
                     <h3>My Profile</h3>
 
-                    <p>Manage your account</p>
+                    <p>Manage account</p>
 
                 </div>
-
 
             </div>
 
 
-
-            <!-- ACTIVITY -->
 
             <div class="activity">
 
@@ -1344,18 +1402,17 @@
 
                         <br>
 
-                        <small>
-                            Contribution received
-                        </small>
+                        <small>Contribution received</small>
 
                     </div>
 
                     <div class="positive">
+
                         + KES 5,000
+
                     </div>
 
                 </div>
-
 
 
                 <div class="activity-item">
@@ -1366,18 +1423,17 @@
 
                         <br>
 
-                        <small>
-                            Loan received
-                        </small>
+                        <small>Loan received</small>
 
                     </div>
 
                     <div class="positive">
+
                         + KES 9,000
+
                     </div>
 
                 </div>
-
 
 
                 <div class="activity-item">
@@ -1388,21 +1444,19 @@
 
                         <br>
 
-                        <small>
-                            Monthly repayment
-                        </small>
+                        <small>Monthly repayment</small>
 
                     </div>
 
                     <div class="negative">
+
                         - KES 1,000
+
                     </div>
 
                 </div>
 
-
             </div>
-
 
         </div>
 
@@ -1413,7 +1467,7 @@
 
 
 <!-- =========================================
-     ADMIN DASHBOARD
+ADMIN DASHBOARD
 ========================================= -->
 
 <div id="adminDashboard" class="page">
@@ -1425,10 +1479,8 @@
 
             <h2>🛡️ MySACCO Admin Dashboard</h2>
 
-
-            <button
-                class="logout"
-                onclick="showHome()">
+            <button class="logout"
+                    onclick="showHome()">
 
                 Logout
 
@@ -1454,19 +1506,13 @@
 
 
 
-            <!-- ADMIN IMAGE -->
-
-            <img
-                src="images/246159.jpg"
-                class="dashboard-banner"
-                alt="SACCO Admin Dashboard">
+            <img src="images/246159.jpg"
+                 class="dashboard-banner"
+                 alt="SACCO Dashboard">
 
 
-
-            <!-- ADMIN STATS -->
 
             <div class="stats">
-
 
                 <div class="stat-card green">
 
@@ -1475,7 +1521,6 @@
                     <h2>25</h2>
 
                 </div>
-
 
 
                 <div class="stat-card yellow">
@@ -1487,7 +1532,6 @@
                 </div>
 
 
-
                 <div class="stat-card blue">
 
                     <h4>Total Loans</h4>
@@ -1495,7 +1539,6 @@
                     <h2>KES 80,000</h2>
 
                 </div>
-
 
 
                 <div class="stat-card red">
@@ -1506,15 +1549,11 @@
 
                 </div>
 
-
             </div>
 
 
 
-            <h2
-                style="
-                color:#063d35;
-                margin-bottom:20px;">
+            <h2 style="color:#063d35;margin-bottom:20px;">
 
                 Admin Management
 
@@ -1525,104 +1564,78 @@
             <div class="actions">
 
 
-                <div
-                    class="action-card"
-                    onclick="alert('Member Management will open here.')">
+                <div class="action-card"
+                     onclick="showMembersPage()">
 
                     <div class="icon">👥</div>
 
                     <h3>Members</h3>
 
-                    <p>
-                        Manage SACCO members
-                    </p>
+                    <p>Manage SACCO members</p>
 
                 </div>
 
 
-
-                <div
-                    class="action-card"
-                    onclick="alert('Contribution Management will open here.')">
+                <div class="action-card"
+                     onclick="showContributionsPage()">
 
                     <div class="icon">💰</div>
 
                     <h3>Contributions</h3>
 
-                    <p>
-                        Record member payments
-                    </p>
+                    <p>Record member payments</p>
 
                 </div>
 
 
-
-                <div
-                    class="action-card"
-                    onclick="alert('Loan Management will open here.')">
+                <div class="action-card"
+                     onclick="showLoansPage()">
 
                     <div class="icon">🏦</div>
 
                     <h3>Loans</h3>
 
-                    <p>
-                        Approve and manage loans
-                    </p>
+                    <p>Approve and manage loans</p>
 
                 </div>
 
 
-
-                <div
-                    class="action-card"
-                    onclick="alert('Repayment Management will open here.')">
+                <div class="action-card"
+                     onclick="showRepaymentsPage()">
 
                     <div class="icon">📅</div>
 
                     <h3>Repayments</h3>
 
-                    <p>
-                        Manage loan repayments
-                    </p>
+                    <p>Manage repayments</p>
 
                 </div>
 
 
-
-                <div
-                    class="action-card"
-                    onclick="alert('Reports will open here.')">
+                <div class="action-card"
+                     onclick="showReportsPage()">
 
                     <div class="icon">📊</div>
 
                     <h3>Reports</h3>
 
-                    <p>
-                        View SACCO reports
-                    </p>
+                    <p>View SACCO reports</p>
 
                 </div>
 
 
-
-                <div
-                    class="action-card"
-                    onclick="alert('Settings will open here.')">
+                <div class="action-card"
+                     onclick="showSettingsPage()">
 
                     <div class="icon">⚙️</div>
 
                     <h3>Settings</h3>
 
-                    <p>
-                        Configure your SACCO
-                    </p>
+                    <p>Configure SACCO</p>
 
                 </div>
 
-
             </div>
-
-
 
         </div>
 
@@ -1633,7 +1646,1006 @@
 
 
 <!-- =========================================
-     JAVASCRIPT
+MEMBERS PAGE
+========================================= -->
+
+<div id="membersPage" class="page">
+
+    <div class="dashboard">
+
+        <div class="dashboard-header">
+
+            <h2>👥 Member Management</h2>
+
+            <button class="btn-secondary"
+                    onclick="showAdminDashboard()">
+
+                ← Dashboard
+
+            </button>
+
+        </div>
+
+
+        <div class="dashboard-content">
+
+            <div class="welcome">
+
+                <h1>SACCO Members</h1>
+
+                <p>Add and manage SACCO members.</p>
+
+            </div>
+
+
+            <div class="activity">
+
+                <h2>➕ Add New Member</h2>
+
+
+                <label>Full Name</label>
+
+                <input type="text"
+                       placeholder="Enter member name">
+
+
+                <label>Phone Number</label>
+
+                <input type="text"
+                       placeholder="Enter phone number">
+
+
+                <label>ID Number</label>
+
+                <input type="text"
+                       placeholder="Enter ID number">
+
+
+                <br><br>
+
+                <button class="btn-primary">
+
+                    ➕ Add Member
+
+                </button>
+
+            </div>
+
+
+            <br>
+
+
+            <div class="activity">
+
+                <h2>Registered Members</h2>
+
+
+                <div class="activity-item">
+
+                    <div>
+
+                        <strong>👤 John Kamau</strong>
+
+                        <br>
+
+                        <small>Phone: 0712345678</small>
+
+                    </div>
+
+                    <div class="positive">Active</div>
+
+                </div>
+
+
+                <div class="activity-item">
+
+                    <div>
+
+                        <strong>👤 Mary Wanjiku</strong>
+
+                        <br>
+
+                        <small>Phone: 0723456789</small>
+
+                    </div>
+
+                    <div class="positive">Active</div>
+
+                </div>
+
+
+                <div class="activity-item">
+
+                    <div>
+
+                        <strong>👤 Peter Otieno</strong>
+
+                        <br>
+
+                        <small>Phone: 0798765432</small>
+
+                    </div>
+
+                    <div class="positive">Active</div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================
+CONTRIBUTIONS PAGE
+========================================= -->
+
+<div id="contributionsPage" class="page">
+
+    <div class="dashboard">
+
+        <div class="dashboard-header">
+
+            <h2>💰 Contributions</h2>
+
+            <button class="btn-secondary"
+                    onclick="showAdminDashboard()">
+
+                ← Dashboard
+
+            </button>
+
+        </div>
+
+
+        <div class="dashboard-content">
+
+
+            <div class="welcome">
+
+                <h1>Member Contributions</h1>
+
+                <p>Record weekly SACCO contributions.</p>
+
+            </div>
+
+
+            <div class="stats">
+
+                <div class="stat-card green">
+
+                    <h4>Total Contributions</h4>
+
+                    <h2>KES 125,000</h2>
+
+                </div>
+
+
+                <div class="stat-card yellow">
+
+                    <h4>This Week</h4>
+
+                    <h2>KES 15,000</h2>
+
+                </div>
+
+
+                <div class="stat-card blue">
+
+                    <h4>Members Paid</h4>
+
+                    <h2>20</h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="activity">
+
+                <h2>➕ Record Contribution</h2>
+
+
+                <label>Member Name</label>
+
+                <input type="text"
+                       placeholder="Enter member name">
+
+
+                <label>Amount</label>
+
+                <input type="number"
+                       placeholder="Enter amount">
+
+
+                <label>Date</label>
+
+                <input type="date">
+
+
+                <br><br>
+
+                <button class="btn-primary">
+
+                    💰 Record Contribution
+
+                </button>
+
+            </div>
+
+
+            <br>
+
+
+            <div class="activity">
+
+                <h2>Recent Contributions</h2>
+
+
+                <div class="activity-item">
+
+                    <strong>John Kamau</strong>
+
+                    <div class="positive">
+
+                        + KES 5,000
+
+                    </div>
+
+                </div>
+
+
+                <div class="activity-item">
+
+                    <strong>Mary Wanjiku</strong>
+
+                    <div class="positive">
+
+                        + KES 3,000
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================
+LOANS PAGE
+========================================= -->
+
+<div id="loansPage" class="page">
+
+    <div class="dashboard">
+
+        <div class="dashboard-header">
+
+            <h2>🏦 Loan Management</h2>
+
+            <button class="btn-secondary"
+                    onclick="showAdminDashboard()">
+
+                ← Dashboard
+
+            </button>
+
+        </div>
+
+
+        <div class="dashboard-content">
+
+
+            <div class="welcome">
+
+                <h1>Loan Management</h1>
+
+                <p>
+                    Review and approve loan requests.
+                </p>
+
+            </div>
+
+
+            <div class="stats">
+
+                <div class="stat-card blue">
+
+                    <h4>Total Loans</h4>
+
+                    <h2>KES 80,000</h2>
+
+                </div>
+
+
+                <div class="stat-card yellow">
+
+                    <h4>Pending Requests</h4>
+
+                    <h2>3</h2>
+
+                </div>
+
+
+                <div class="stat-card red">
+
+                    <h4>Outstanding</h4>
+
+                    <h2>KES 35,000</h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="activity">
+
+                <h2>Pending Loan Requests</h2>
+
+
+                <div class="activity-item">
+
+                    <div>
+
+                        <strong>👤 John Kamau</strong>
+
+                        <br>
+
+                        <small>
+                            Requested: KES 10,000
+                        </small>
+
+                    </div>
+
+
+                    <button class="btn-primary">
+
+                        Approve
+
+                    </button>
+
+                </div>
+
+
+                <div class="activity-item">
+
+                    <div>
+
+                        <strong>👤 Mary Wanjiku</strong>
+
+                        <br>
+
+                        <small>
+                            Requested: KES 20,000
+                        </small>
+
+                    </div>
+
+
+                    <button class="btn-primary">
+
+                        Approve
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================
+REPAYMENTS PAGE
+========================================= -->
+
+<div id="repaymentsPage" class="page">
+
+    <div class="dashboard">
+
+        <div class="dashboard-header">
+
+            <h2>📅 Loan Repayments</h2>
+
+            <button class="btn-secondary"
+                    onclick="showAdminDashboard()">
+
+                ← Dashboard
+
+            </button>
+
+        </div>
+
+
+        <div class="dashboard-content">
+
+
+            <div class="welcome">
+
+                <h1>Loan Repayments</h1>
+
+                <p>
+                    Track member loan repayments.
+                </p>
+
+            </div>
+
+
+            <div class="activity">
+
+                <h2>➕ Record Repayment</h2>
+
+
+                <label>Member Name</label>
+
+                <input type="text"
+                       placeholder="Enter member name">
+
+
+                <label>Repayment Amount</label>
+
+                <input type="number"
+                       placeholder="Enter amount">
+
+
+                <br><br>
+
+                <button class="btn-primary">
+
+                    Record Repayment
+
+                </button>
+
+            </div>
+
+
+            <br>
+
+
+            <div class="activity">
+
+                <h2>Recent Repayments</h2>
+
+
+                <div class="activity-item">
+
+                    <div>
+
+                        <strong>John Kamau</strong>
+
+                        <br>
+
+                        <small>Loan repayment</small>
+
+                    </div>
+
+
+                    <div class="positive">
+
+                        KES 1,000
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================
+REPORTS PAGE
+========================================= -->
+
+<div id="reportsPage" class="page">
+
+    <div class="dashboard">
+
+        <div class="dashboard-header">
+
+            <h2>📊 SACCO Reports</h2>
+
+            <button class="btn-secondary"
+                    onclick="showAdminDashboard()">
+
+                ← Dashboard
+
+            </button>
+
+        </div>
+
+
+        <div class="dashboard-content">
+
+
+            <div class="welcome">
+
+                <h1>Financial Reports</h1>
+
+                <p>
+                    SACCO financial overview.
+                </p>
+
+            </div>
+
+
+            <div class="stats">
+
+                <div class="stat-card green">
+
+                    <h4>Total Savings</h4>
+
+                    <h2>KES 125,000</h2>
+
+                </div>
+
+
+                <div class="stat-card blue">
+
+                    <h4>Total Loans Issued</h4>
+
+                    <h2>KES 80,000</h2>
+
+                </div>
+
+
+                <div class="stat-card yellow">
+
+                    <h4>Loan Interest</h4>
+
+                    <h2>KES 8,000</h2>
+
+                </div>
+
+
+                <div class="stat-card red">
+
+                    <h4>Outstanding</h4>
+
+                    <h2>KES 35,000</h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="activity">
+
+                <h2>Available Reports</h2>
+
+
+                <button class="btn-primary">
+
+                    📄 Contributions Report
+
+                </button>
+
+                <br><br>
+
+
+                <button class="btn-primary">
+
+                    🏦 Loans Report
+
+                </button>
+
+                <br><br>
+
+
+                <button class="btn-primary">
+
+                    👥 Members Report
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================
+SETTINGS PAGE
+========================================= -->
+
+<div id="settingsPage" class="page">
+
+    <div class="dashboard">
+
+        <div class="dashboard-header">
+
+            <h2>⚙️ SACCO Settings</h2>
+
+            <button class="btn-secondary"
+                    onclick="showAdminDashboard()">
+
+                ← Dashboard
+
+            </button>
+
+        </div>
+
+
+        <div class="dashboard-content">
+
+
+            <div class="welcome">
+
+                <h1>System Settings</h1>
+
+                <p>
+                    Configure your SACCO.
+                </p>
+
+            </div>
+
+
+            <div class="activity">
+
+
+                <label>SACCO Name</label>
+
+                <input type="text"
+                       value="MySACCO">
+
+
+                <label>Minimum Contribution</label>
+
+                <input type="number"
+                       value="1000">
+
+
+                <label>Loan Interest Rate (%)</label>
+
+                <input type="number"
+                       value="10">
+
+
+                <label>Loan Deadline (Days)</label>
+
+                <input type="number"
+                       value="30">
+
+
+                <br><br>
+
+                <button class="btn-primary">
+
+                    💾 Save Settings
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================
+MEMBER CONTRIBUTION PAGE
+========================================= -->
+
+<div id="memberContributionsPage" class="page">
+
+    <div class="dashboard">
+
+        <div class="dashboard-header">
+
+            <h2>💰 My Contributions</h2>
+
+            <button class="btn-secondary"
+                    onclick="showMemberDashboard()">
+
+                ← Dashboard
+
+            </button>
+
+        </div>
+
+
+        <div class="dashboard-content">
+
+            <div class="welcome">
+
+                <h1>My Contributions</h1>
+
+                <p>
+                    View your contribution history.
+                </p>
+
+            </div>
+
+
+            <div class="activity">
+
+                <h2>Contribution History</h2>
+
+
+                <div class="activity-item">
+
+                    <div>
+
+                        <strong>Weekly Contribution</strong>
+
+                        <br>
+
+                        <small>Friday Payment</small>
+
+                    </div>
+
+                    <div class="positive">
+
+                        KES 5,000
+
+                    </div>
+
+                </div>
+
+
+                <div class="activity-item">
+
+                    <div>
+
+                        <strong>Weekly Contribution</strong>
+
+                        <br>
+
+                        <small>Previous Friday</small>
+
+                    </div>
+
+                    <div class="positive">
+
+                        KES 5,000
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================
+MEMBER LOAN PAGE
+========================================= -->
+
+<div id="memberLoansPage" class="page">
+
+    <div class="dashboard">
+
+        <div class="dashboard-header">
+
+            <h2>🏦 Request Loan</h2>
+
+            <button class="btn-secondary"
+                    onclick="showMemberDashboard()">
+
+                ← Dashboard
+
+            </button>
+
+        </div>
+
+
+        <div class="dashboard-content">
+
+
+            <div class="welcome">
+
+                <h1>Loan Request</h1>
+
+                <p>
+                    Request a SACCO loan.
+                </p>
+
+            </div>
+
+
+            <div class="activity">
+
+                <h2>Apply for Loan</h2>
+
+
+                <label>Loan Amount</label>
+
+                <input type="number"
+                       placeholder="Enter loan amount">
+
+
+                <label>Loan Purpose</label>
+
+                <input type="text"
+                       placeholder="What is the loan for?">
+
+
+                <br><br>
+
+
+                <p>
+
+                    <strong>Loan Terms:</strong>
+
+                    <br><br>
+
+                    Interest: 10%
+
+                    <br>
+
+                    Interest is deducted immediately.
+
+                    <br>
+
+                    Repayment deadline: 30 days.
+
+                </p>
+
+
+                <br>
+
+
+                <button class="btn-primary">
+
+                    🏦 Submit Loan Request
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================
+MEMBER TRANSACTIONS PAGE
+========================================= -->
+
+<div id="memberTransactionsPage" class="page">
+
+    <div class="dashboard">
+
+        <div class="dashboard-header">
+
+            <h2>📄 My Transactions</h2>
+
+            <button class="btn-secondary"
+                    onclick="showMemberDashboard()">
+
+                ← Dashboard
+
+            </button>
+
+        </div>
+
+
+        <div class="dashboard-content">
+
+
+            <div class="welcome">
+
+                <h1>Transaction History</h1>
+
+                <p>
+                    View all your SACCO transactions.
+                </p>
+
+            </div>
+
+
+            <div class="activity">
+
+                <div class="activity-item">
+
+                    <div>
+
+                        <strong>💰 Contribution</strong>
+
+                        <br>
+
+                        <small>Weekly contribution</small>
+
+                    </div>
+
+                    <div class="positive">
+
+                        + KES 5,000
+
+                    </div>
+
+                </div>
+
+
+                <div class="activity-item">
+
+                    <div>
+
+                        <strong>🏦 Loan Received</strong>
+
+                        <br>
+
+                        <small>Loan disbursement</small>
+
+                    </div>
+
+                    <div class="positive">
+
+                        + KES 9,000
+
+                    </div>
+
+                </div>
+
+
+                <div class="activity-item">
+
+                    <div>
+
+                        <strong>📉 Loan Repayment</strong>
+
+                        <br>
+
+                        <small>Loan payment</small>
+
+                    </div>
+
+                    <div class="negative">
+
+                        - KES 1,000
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================
+JAVASCRIPT
 ========================================= -->
 
 <script>
@@ -1641,25 +2653,33 @@
 
     function hideAllPages() {
 
-        document
-            .getElementById("homePage")
-            .classList.remove("active");
+        const pages = [
 
-        document
-            .getElementById("memberLoginPage")
-            .classList.remove("active");
+            "homePage",
+            "memberLoginPage",
+            "adminLoginPage",
+            "memberDashboard",
+            "adminDashboard",
+            "membersPage",
+            "contributionsPage",
+            "loansPage",
+            "repaymentsPage",
+            "reportsPage",
+            "settingsPage",
+            "memberContributionsPage",
+            "memberLoansPage",
+            "memberTransactionsPage"
 
-        document
-            .getElementById("adminLoginPage")
-            .classList.remove("active");
+        ];
 
-        document
-            .getElementById("memberDashboard")
-            .classList.remove("active");
 
-        document
-            .getElementById("adminDashboard")
-            .classList.remove("active");
+        pages.forEach(function(page) {
+
+            document
+                .getElementById(page)
+                .classList.remove("active");
+
+        });
 
     }
 
@@ -1687,6 +2707,8 @@
             .getElementById("memberLoginPage")
             .classList.add("active");
 
+        window.scrollTo(0, 0);
+
     }
 
 
@@ -1698,6 +2720,8 @@
         document
             .getElementById("adminLoginPage")
             .classList.add("active");
+
+        window.scrollTo(0, 0);
 
     }
 
@@ -1730,8 +2754,135 @@
     }
 
 
+
+    function showMembersPage() {
+
+        hideAllPages();
+
+        document
+            .getElementById("membersPage")
+            .classList.add("active");
+
+        window.scrollTo(0, 0);
+
+    }
+
+
+
+    function showContributionsPage() {
+
+        hideAllPages();
+
+        document
+            .getElementById("contributionsPage")
+            .classList.add("active");
+
+        window.scrollTo(0, 0);
+
+    }
+
+
+
+    function showLoansPage() {
+
+        hideAllPages();
+
+        document
+            .getElementById("loansPage")
+            .classList.add("active");
+
+        window.scrollTo(0, 0);
+
+    }
+
+
+
+    function showRepaymentsPage() {
+
+        hideAllPages();
+
+        document
+            .getElementById("repaymentsPage")
+            .classList.add("active");
+
+        window.scrollTo(0, 0);
+
+    }
+
+
+
+    function showReportsPage() {
+
+        hideAllPages();
+
+        document
+            .getElementById("reportsPage")
+            .classList.add("active");
+
+        window.scrollTo(0, 0);
+
+    }
+
+
+
+    function showSettingsPage() {
+
+        hideAllPages();
+
+        document
+            .getElementById("settingsPage")
+            .classList.add("active");
+
+        window.scrollTo(0, 0);
+
+    }
+
+
+
+    function showMemberContributions() {
+
+        hideAllPages();
+
+        document
+            .getElementById("memberContributionsPage")
+            .classList.add("active");
+
+        window.scrollTo(0, 0);
+
+    }
+
+
+
+    function showMemberLoans() {
+
+        hideAllPages();
+
+        document
+            .getElementById("memberLoansPage")
+            .classList.add("active");
+
+        window.scrollTo(0, 0);
+
+    }
+
+
+
+    function showMemberTransactions() {
+
+        hideAllPages();
+
+        document
+            .getElementById("memberTransactionsPage")
+            .classList.add("active");
+
+        window.scrollTo(0, 0);
+
+    }
+
+
 </script>
 
 
 </body>
+
 </html>
